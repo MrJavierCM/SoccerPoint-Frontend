@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      SOCCER POINT
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="loginForm" (ngSumbit)="login()">
+      <ion-list>
+        <ion-item>
+          <ion-label>Usuario:</ion-label>
+          <ion-chip>
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-input type="text" formControlName="Username"></ion-input>
+          </ion-chip>
+        </ion-item>
+        <ion-item>
+          <ion-label>Contraseña:</ion-label>
+          <ion-chip>
+            <ion-icon name="key-outline"></ion-icon>
+            <ion-input type="password" formControlName="Password"></ion-input>
+          </ion-chip>
+        </ion-item>
+      </ion-list>
+    </form>
+  <div>
+    <ion-text>¿Tiene usted un establecimiento? Pulse aquí </ion-text>
+  </div>
+</ion-content>
