@@ -1,0 +1,34 @@
+<ion-header>
+ <ion-title>REGISTRO</ion-title>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registForm" (ngSumbit)="regist()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Tipo de cuenta:</ion-label>
+        <ion-select name="AccountType" value="user" placeholder="Seleccione tipo de cuenta" (ionChange)="changeTypeAccount($event)">
+          <ion-select-option value="user">Usuario</ion-select-option>
+          <ion-select-option value="pub">Establecimiento</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label *ngIf="typeAccount != 'pub'">Nombre:</ion-label>
+        <ion-label *ngIf="typeAccount == 'pub'">Nombre del establecimiento</ion-label>
+        <ion-input name="Name"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="typeAccount != 'pub'">
+        <ion-label>Apellidos</ion-label>
+        <ion-input name="Surname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre de usuario:</ion-label>
+        <ion-input name="Nickname"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="typeAccount == 'pub'">
+        <ion-label>Localidad:</ion-label>
+        <ion-input name="Location"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
