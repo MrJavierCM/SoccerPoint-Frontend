@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ export class HomePage {
   protected loginForm: FormGroup;
 
   constructor(
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.loginForm = formBuilder.group({
       Username: new FormControl('', Validators.compose([
@@ -20,6 +22,10 @@ export class HomePage {
         Validators.required,
       ])),
   })
+  }
+
+  register(){
+    this.router.navigateByUrl('registration')
   }
 
 }

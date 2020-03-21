@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -15,12 +15,29 @@ export class RegistrationComponent implements OnInit {
   ) { 
     this.registForm = formBuilder.group({
       AcoountType: new FormControl('', Validators.required),
-      Name: new FormControl('', Validators.compose([
-        Validators.required
+      PubName: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      UserName: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z\s]+$')
       ])),
       Surname: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[a-zA-Z\s]+$')
       ])),
+      Nickname: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9\s]+$')
+      ])),
+      Password: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')
+      ])),
+      ConfirmPassword: new FormControl('', Validators.compose([
+        Validators.required,
+        this.equalTo('Password')
+      ]))
     })
   }
 
@@ -31,5 +48,15 @@ export class RegistrationComponent implements OnInit {
   changeTypeAccount($event){
     this.typeAccount = $event.target.value;
   }
+
+  equalTo(field_Name): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      let input = control.value;
+      let isValid = control.root.value[field_Name] == input;
+      if (!isValid) return { equalTo: { isValid } };
+      else return null;
+    };
+  }
+  
 
 }

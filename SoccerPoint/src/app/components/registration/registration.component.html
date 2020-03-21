@@ -12,10 +12,13 @@
           <ion-select-option value="pub">Establecimiento</ion-select-option>
         </ion-select>
       </ion-item>
-      <ion-item>
-        <ion-label *ngIf="typeAccount != 'pub'">Nombre:</ion-label>
-        <ion-label *ngIf="typeAccount == 'pub'">Nombre del establecimiento</ion-label>
-        <ion-input name="Name"></ion-input>
+      <ion-item *ngIf="typeAccount == 'pub'">
+        <ion-label>Nombre del establecimiento</ion-label>
+        <ion-input name="PubName"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="typeAccount != 'pub'">
+        <ion-label>Nombre:</ion-label>
+        <ion-input name="UserName"></ion-input>
       </ion-item>
       <ion-item *ngIf="typeAccount != 'pub'">
         <ion-label>Apellidos</ion-label>
@@ -29,6 +32,18 @@
         <ion-label>Localidad:</ion-label>
         <ion-input name="Location"></ion-input>
       </ion-item>
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-input name="Password" type="Password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Confirmar contraseña:</ion-label>
+        <ion-input name="ConfirmPassword" type="Password"></ion-input>
+      </ion-item>
     </ion-list>
   </form>
+  <div align="center">
+    <ion-button color="warning-">Cancelar</ion-button>
+    <ion-button color="primary">Crear</ion-button>
+  </div>
 </ion-content>
