@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -7,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  click(tab: string){
+    switch(tab) {
+      case "location":
+        this.router.navigateByUrl('main/location');
+        break;
+        case "results":
+        this.router.navigateByUrl('main/results');
+        break;
+        case "team":
+        this.router.navigateByUrl('main/team');
+        break;
+        case "settings":
+        this.router.navigateByUrl('main/settings');
+        break;
+    }
+  }
 
 }
