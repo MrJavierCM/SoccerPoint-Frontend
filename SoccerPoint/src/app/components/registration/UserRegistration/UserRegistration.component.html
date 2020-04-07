@@ -8,39 +8,21 @@
   <form [formGroup]="registForm" (ngSumbit)="regist()">
     <ion-list>
       <ion-item>
-        <ion-label>Tipo de cuenta:</ion-label>
-        <ion-select formControlName="AccountType" value="user" placeholder="Seleccione tipo de cuenta" (ionChange)="changeTypeAccount($event)">
-          <ion-select-option value="user">Usuario</ion-select-option>
-          <ion-select-option value="pub">Establecimiento</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="typeAccount == 'pub'">
-        <ion-label>Nombre del establecimiento</ion-label>
-        <ion-input formControlName="PubName"></ion-input>
-      </ion-item>
-      <div *ngIf="typeAccount == 'pub'">
-        <ng-container *ngFor="let validation of validation_messages.PubName">
-          <div *ngIf="registForm.get('PubName').hasError(validation.type) && (registForm.get('PubName').dirty || registForm.get('PubName').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <ion-item *ngIf="typeAccount != 'pub'">
         <ion-label>Nombre:</ion-label>
         <ion-input formControlName="Username"></ion-input>
       </ion-item>
-      <div *ngIf="typeAccount != 'pub'">
+      <div>
         <ng-container *ngFor="let validation of validation_messages.Username">
           <div *ngIf="registForm.get('Username').hasError(validation.type) && (registForm.get('Username').dirty || registForm.get('Username').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
-      <ion-item *ngIf="typeAccount != 'pub'">
+      <ion-item>
         <ion-label>Apellidos</ion-label>
         <ion-input formControlName="Surname"></ion-input>
       </ion-item>
-      <div *ngIf="typeAccount != 'pub'">
+      <div>
         <ng-container *ngFor="let validation of validation_messages.Surname">
           <div *ngIf="registForm.get('Surname').hasError(validation.type) && (registForm.get('Surname').dirty || registForm.get('Surname').touched)">
             {{ validation.message }}
@@ -54,39 +36,6 @@
       <div>
         <ng-container *ngFor="let validation of validation_messages.Nickname">
           <div *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <ion-item *ngIf="typeAccount == 'pub'">
-        <ion-label>Localidad:</ion-label>
-        <ion-input formControlName="Location"></ion-input>
-      </ion-item>
-      <div *ngIf="typeAccount == 'pub'">
-        <ng-container *ngFor="let validation of validation_messages.Location">
-          <div *ngIf="registForm.get('Location').hasError(validation.type) && (registForm.get('Location').dirty || registForm.get('Location').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <ion-item *ngIf="typeAccount == 'pub'">
-        <ion-label>Direccón:</ion-label>
-        <ion-input formControlName="Address"></ion-input>
-      </ion-item>
-      <div *ngIf="typeAccount == 'pub'">
-        <ng-container *ngFor="let validation of validation_messages.Address">
-          <div *ngIf="registForm.get('Address').hasError(validation.type) && (registForm.get('Address').dirty || registForm.get('Address').touched)">
-            {{ validation.message }}
-          </div>
-        </ng-container>
-      </div>
-      <ion-item *ngIf="typeAccount == 'pub'">
-        <ion-label>Teléfono de contacto:</ion-label>
-        <ion-input formControlName="Phone"></ion-input>
-      </ion-item>
-      <div *ngIf="typeAccount == 'pub'">
-        <ng-container *ngFor="let validation of validation_messages.Phone">
-          <div *ngIf="registForm.get('Phone').hasError(validation.type) && (registForm.get('Phone').dirty || registForm.get('Phone').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
@@ -128,6 +77,6 @@
   </form>
   <div align="center">
     <ion-button color="warning">Cancelar</ion-button>
-    <ion-button color="primary" (click)="register()" [disabled]="!registForm.valid">Crear</ion-button>
+    <ion-button color="primary" (click)="register()">Crear</ion-button>
   </div>
 </ion-content>

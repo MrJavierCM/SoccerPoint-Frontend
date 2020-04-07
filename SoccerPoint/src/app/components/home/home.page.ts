@@ -24,8 +24,12 @@ export class HomePage {
   })
   }
 
-  register(){
-    this.router.navigateByUrl('registration')
+  userRegister(){
+    this.router.navigateByUrl('UserRegister')
+  }
+
+  pubRegister(){
+    this.router.navigateByUrl('PubRegister')
   }
 
 }

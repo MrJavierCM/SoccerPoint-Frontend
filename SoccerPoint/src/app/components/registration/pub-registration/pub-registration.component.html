@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>REGISTRO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registForm" (ngSumbit)="regist()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Nombre del establecimiento</ion-label>
+        <ion-input formControlName="PubName"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.PubName">
+          <div *ngIf="registForm.get('PubName').hasError(validation.type) && (registForm.get('PubName').dirty || registForm.get('PubName').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Nombre de usuario:</ion-label>
+        <ion-input formControlName="Nickname"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.Nickname">
+          <div *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Localidad:</ion-label>
+        <ion-input formControlName="Location"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.Location">
+          <div *ngIf="registForm.get('Location').hasError(validation.type) && (registForm.get('Location').dirty || registForm.get('Location').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Direccón:</ion-label>
+        <ion-input formControlName="Address"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.Address">
+          <div *ngIf="registForm.get('Address').hasError(validation.type) && (registForm.get('Address').dirty || registForm.get('Address').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Teléfono de contacto:</ion-label>
+        <ion-input formControlName="Phone"></ion-input>
+      </ion-item>
+      <div>
+        <ng-container *ngFor="let validation of validation_messages.Phone">
+          <div *ngIf="registForm.get('Phone').hasError(validation.type) && (registForm.get('Phone').dirty || registForm.get('Phone').touched)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label>Correo electrónico:</ion-label>
+        <ion-input formContrlName="Email"></ion-input>
+      </ion-item>
+      <div>
+      <ng-container *ngFor="let validation of validation_messages.Email">
+        <div *ngIf="registForm.get('Email').hasError(validation.type) && (registForm.get('Email').dirty || registForm.get('Email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-input formControlName="Password" type="Password"></ion-input>
+      </ion-item>
+      <div>
+      <ng-container *ngFor="let validation of validation_messages.Password">
+        <div *ngIf="registForm.get('Password').hasError(validation.type) && (registForm.get('Password').dirty || registForm.get('Password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+      <ion-item>
+        <ion-label>Confirmar contraseña:</ion-label>
+        <ion-input formControlName="ConfirmPassword" type="Password"></ion-input>
+      </ion-item>
+      <div>
+      <ng-container *ngFor="let validation of validation_messages.ConfirmPassword">
+        <div *ngIf="registForm.get('ConfirmPassword').hasError(validation.type) && (registForm.get('ConfirmPassword').dirty || registForm.get('ConfirmPassword').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    </ion-list>
+  </form>
+  <div align="center">
+    <ion-button color="warning">Cancelar</ion-button>
+    <ion-button color="primary" (click)="register()">Crear</ion-button>
+  </div>
+</ion-content>

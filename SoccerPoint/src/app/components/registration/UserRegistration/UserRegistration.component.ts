@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss'],
+  templateUrl: './UserRegistration.component.html',
+  styleUrls: ['./UserRegistration.component.scss'],
 })
-export class RegistrationComponent implements OnInit {
+export class UserRegistrationComponent implements OnInit {
   protected registForm: FormGroup;
-  protected typeAccount: any;
 
   constructor(
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    protected usersService: UsersService
   ) { 
     this.registForm = formBuilder.group({
       AccountType: new FormControl('', Validators.required),
-      PubName: new FormControl('', Validators.compose([
-        Validators.required,
-      ])),
+       PubName: new FormControl('', Validators.compose([
+         Validators.required,
+       ])),
       Username: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z\s]+$')
@@ -30,16 +31,20 @@ export class RegistrationComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9\s]+$')
       ])),
+      Location: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9\s]+$')
+      ])),
       Address: new FormControl('', Validators.compose([
-        Validators.required
+         Validators.required
       ])),
       Phone: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^([0-9]{9})$')
+         Validators.required,
+         Validators.pattern('^([0-9]{9})$')
       ])),
       Email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[\w]+@{1}[\w]+\.[a-z]{2,3}$')
+         Validators.required,
+         Validators.pattern('^[\w]+@{1}[\w]+\.[a-z]{2,3}$')
       ])),
       Password: new FormControl('', Validators.compose([
         Validators.required,
@@ -53,11 +58,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.typeAccount = null;
-  }
-
-  changeTypeAccount($event){
-    this.typeAccount = $event.target.value;
   }
 
   equalTo(field_Name): ValidatorFn {
@@ -68,14 +68,16 @@ export class RegistrationComponent implements OnInit {
       else return null;
     };
   }
+
+  register(){
+    console.log(this.registForm.value);
+    this.usersService.postUser(this.registForm.value);
+  }
   
   protected validation_messages = {
     Nickname: [
       { type: 'required', message: 'El nombre de usuario es obligatorio.' },
       { type: 'pattern', message: 'El nombre de usuario solo acepta caracteres alfanuméricos.' }
-    ],
-    Pubname: [
-      { type: 'required', message: 'El nombre del establecimiento es obligatorio.' }
     ],
     Username: [
       { type: 'required', message: 'El nombre es obligatorio.' },
@@ -84,13 +86,6 @@ export class RegistrationComponent implements OnInit {
     Surname: [
       { type: 'required', message: 'El apellido es obligatorio.' },
       { type: 'pattern', message: 'El apellido de usuario solo acepta caracteres alfabéticos.' }
-    ],
-    Phone: [
-      { type: 'required', message: 'El número de teléfono es obligatorio.' },
-      { type: 'pattern', message: 'El número de teléfono debe contener únicamente 9 valores numéricos.' }
-    ],
-    Address: [
-      { type: 'required', message: 'La dirección del establecimiento es obligatoria.' }
     ],
     Email: [
       { type: 'required', message: 'El email es obligatorio.' },

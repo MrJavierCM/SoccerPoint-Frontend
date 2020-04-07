@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main/main.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { UserRegistrationComponent } from './components/registration/UserRegistration/UserRegistration.component';
+import { PubRegistrationComponent } from './components/registration/pub-registration/pub-registration.component';
 
 const routes: Routes = [
   { 
@@ -14,8 +15,12 @@ const routes: Routes = [
     loadChildren: () => import('./components/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'registration',
-    component: RegistrationComponent,
+    path: 'UserRegister',
+    component: UserRegistrationComponent,
+  },
+  {
+    path: 'PubRegister',
+    component: PubRegistrationComponent,
   },
   {
     path: 'main',
