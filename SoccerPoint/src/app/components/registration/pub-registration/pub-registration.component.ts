@@ -35,11 +35,11 @@ export class PubRegistrationComponent implements OnInit {
       ])),
       Email: new FormControl('', Validators.compose([
          Validators.required,
-         Validators.pattern('^[\w]+@{1}[\w]+\.[a-z]{2,3}$')
+         Validators.pattern("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
       ])),
       Password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')
+        // Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')
       ])),
       ConfirmPassword: new FormControl('', Validators.compose([
         Validators.required,
