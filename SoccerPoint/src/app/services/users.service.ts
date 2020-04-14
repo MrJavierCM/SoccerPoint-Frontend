@@ -13,8 +13,12 @@ export class UsersService {
 
   constructor(public http: HttpClient) {  }
 
-  getUser(nick){
-
+  async getUsers(){
+      const req = this.url + 'Users';
+      const resp = await fetch(req);
+      const respJSON = await resp.json();
+      console.log(respJSON);
+      return respJSON;
   }
 
   postUser(data){

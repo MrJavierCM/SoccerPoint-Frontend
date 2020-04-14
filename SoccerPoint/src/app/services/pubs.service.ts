@@ -12,8 +12,12 @@ export class PubsService {
   
   constructor(public http: HttpClient) {  }
 
-  getPub(nick){
-
+  async getPubs(){
+    const req = this.url + 'Pubs';
+    const resp = await fetch(req);
+    const respJSON = await resp.json();
+    console.log(respJSON);
+    return respJSON;
   }
 
   postPub(data){
@@ -34,5 +38,4 @@ export class PubsService {
       console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
   }
-
 }
