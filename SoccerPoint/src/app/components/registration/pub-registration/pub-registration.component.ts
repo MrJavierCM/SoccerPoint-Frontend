@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { PubsService } from 'src/app/services/pubs.service';
+import { LocationsService } from 'src/app/services/locations.service';
+import { Pub } from 'src/app/models/Pub';
 
 @Component({
   selector: 'app-pub-registration',
@@ -12,7 +14,8 @@ export class PubRegistrationComponent implements OnInit {
 
   constructor(
     protected formBuilder: FormBuilder,
-    protected pubsService: PubsService
+    protected pubsService: PubsService,
+    protected locationsService: LocationsService
   ) { 
     this.registForm = formBuilder.group({
       PubName: new FormControl('', Validators.compose([
@@ -61,8 +64,16 @@ export class PubRegistrationComponent implements OnInit {
   }
 
   register(){
-    console.log(this.registForm.value);
-    this.pubsService.postPub(this.registForm.value);
+    var pub: Pub = new Pub(
+      this.registForm.value.PubName,
+      this.registForm.value.Nickname,
+      this.registForm.value.Email,
+      this.registForm.value.Location,
+      this.registForm.value.Address,
+      this.registForm.value.Phone
+      );
+    console.log(pub);
+    this.pubsService.postPub(pub);
   }
   
   protected validation_messages = {
