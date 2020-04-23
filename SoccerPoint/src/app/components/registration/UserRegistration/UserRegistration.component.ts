@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-registration',
@@ -15,10 +16,6 @@ export class UserRegistrationComponent implements OnInit {
     protected usersService: UsersService
   ) { 
     this.registForm = formBuilder.group({
-      AccountType: new FormControl('', Validators.required),
-       PubName: new FormControl('', Validators.compose([
-         Validators.required,
-       ])),
       Username: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z\s]+$')
@@ -31,24 +28,13 @@ export class UserRegistrationComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9\s]+$')
       ])),
-      Location: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9\s]+$')
-      ])),
-      Address: new FormControl('', Validators.compose([
-         Validators.required
-      ])),
-      Phone: new FormControl('', Validators.compose([
-         Validators.required,
-         Validators.pattern('^([0-9]{9})$')
-      ])),
       Email: new FormControl('', Validators.compose([
-         Validators.required,
-         Validators.pattern('^[\w]+@{1}[\w]+\.[a-z]{2,3}$')
+         Validators.required, 
+         Validators.pattern("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")
       ])),
       Password: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')
+        //Validators.pattern('^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$')
       ])),
       ConfirmPassword: new FormControl('', Validators.compose([
         Validators.required,
@@ -70,8 +56,14 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   register(){
-    console.log(this.registForm.value);
-    this.usersService.postUser(this.registForm.value);
+    var user: User = new User(
+      this.registForm.value.Nickname,
+      this.registForm.value.Username,
+      this.registForm.value.Surname,
+      this.registForm.value.Email
+      );
+    console.log(user);
+    this.usersService.postUser(user);
   }
   
   protected validation_messages = {
