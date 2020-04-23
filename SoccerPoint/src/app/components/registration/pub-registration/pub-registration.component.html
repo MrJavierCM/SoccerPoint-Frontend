@@ -31,7 +31,10 @@
       </div>
       <ion-item>
         <ion-label>Localidad:</ion-label>
-        <ion-input formControlName="Location"></ion-input>
+        <ion-input type="search" placeholder="Introduzca localidad" [(ngModel)]="InputLocation" [ngModelOptions]="{standalone: true}" (keyup.enter)="onEnter(InputLocation)"></ion-input>
+        <ion-select formControlName="Location">
+          <ion-select-option [value]="cities">{{cities}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Location">

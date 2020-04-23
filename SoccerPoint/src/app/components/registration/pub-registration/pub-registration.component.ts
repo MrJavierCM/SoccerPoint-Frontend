@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl,Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { PubsService } from 'src/app/services/pubs.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { Pub } from 'src/app/models/Pub';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pub-registration',
@@ -11,11 +12,14 @@ import { Pub } from 'src/app/models/Pub';
 })
 export class PubRegistrationComponent implements OnInit {
   protected registForm: FormGroup;
+  private searchText = '';
+  protected cities: any;
 
   constructor(
     protected formBuilder: FormBuilder,
     protected pubsService: PubsService,
-    protected locationsService: LocationsService
+    protected locationsService: LocationsService,
+    protected loadingController: LoadingController
   ) { 
     this.registForm = formBuilder.group({
       PubName: new FormControl('', Validators.compose([
@@ -26,8 +30,7 @@ export class PubRegistrationComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9\s]+$')
       ])),
       Location: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9\s]+$')
+        Validators.required
       ])),
       Address: new FormControl('', Validators.compose([
          Validators.required
@@ -63,6 +66,18 @@ export class PubRegistrationComponent implements OnInit {
     };
   }
 
+  async getLocations(location){
+    //this.showLoadingInformation();
+    console.log('1er log: ' + location)
+    this.cities = await this.locationsService.getLocations(location);
+    console.log(this.cities);
+    //this.stopLoadingInformation();
+  }
+
+  onEnter(location){
+    this.getLocations(location);
+  }
+  
   register(){
     var pub: Pub = new Pub(
       this.registForm.value.PubName,

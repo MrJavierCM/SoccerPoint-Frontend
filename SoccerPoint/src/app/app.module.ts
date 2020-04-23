@@ -10,9 +10,10 @@ import { AppComponent } from './components/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './components/main/main/main.component';
 import { UserRegistrationComponent } from './components/registration/UserRegistration/UserRegistration.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PubRegistrationComponent } from './components/registration/pub-registration/pub-registration.component';
+import { LocationsService } from './services/locations.service';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,13 @@ import { PubRegistrationComponent } from './components/registration/pub-registra
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    LocationsService
   ],
   bootstrap: [AppComponent]
 })
