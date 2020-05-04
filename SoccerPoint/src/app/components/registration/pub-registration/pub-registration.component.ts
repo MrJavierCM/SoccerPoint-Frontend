@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl,Validators, ValidatorFn, AbstractCo
 import { PubsService } from 'src/app/services/pubs.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { Pub } from 'src/app/models/Pub';
+import { Location } from 'src/app/models/Location';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -12,8 +13,9 @@ import { LoadingController } from '@ionic/angular';
 })
 export class PubRegistrationComponent implements OnInit {
   protected registForm: FormGroup;
-  private searchText = '';
   protected cities: any;
+  protected provinces: String[] = [];
+  protected localities: String[] = [];
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -29,7 +31,13 @@ export class PubRegistrationComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9\s]+$')
       ])),
-      Location: new FormControl('', Validators.compose([
+      Community: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      Province: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      Locality: new FormControl('', Validators.compose([
         Validators.required
       ])),
       Address: new FormControl('', Validators.compose([
@@ -54,7 +62,16 @@ export class PubRegistrationComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  ngOnInit() { 
+
+  }
+
+  async getProvinces(){
+    this.provinces = (await this.locationsService.getProvinces(this.registForm.value.Community)).sort();
+  }
+
+  async getLocalities(){
+    this.localities = (await this.locationsService.getLocalities(this.registForm.value.Province)).sort();
   }
 
   equalTo(field_Name): ValidatorFn {
@@ -65,32 +82,27 @@ export class PubRegistrationComponent implements OnInit {
       else return null;
     };
   }
-
-  async getLocations(location){
-    //this.showLoadingInformation();
-    console.log('1er log: ' + location)
-    this.cities = await this.locationsService.getLocations(location);
-    console.log(this.cities);
-    //this.stopLoadingInformation();
-  }
-
-  onEnter(location){
-    this.getLocations(location);
-  }
   
   register(){
+    var location: Location = new Location(
+      this.registForm.value.Locality,
+      this.registForm.value.Province,
+      this.registForm.value.Community
+    )
+
     var pub: Pub = new Pub(
       this.registForm.value.PubName,
       this.registForm.value.Nickname,
       this.registForm.value.Email,
-      this.registForm.value.Location,
+      location.Name,
+      location.Province,
+      location.Community,
       this.registForm.value.Address,
       this.registForm.value.Phone
       );
-    console.log(pub);
     this.pubsService.postPub(pub);
   }
-  
+ 
   protected validation_messages = {
     Nickname: [
       { type: 'required', message: 'El nombre de usuario es obligatorio.' },
@@ -103,7 +115,7 @@ export class PubRegistrationComponent implements OnInit {
       { type: 'required', message: 'El número de teléfono es obligatorio.' },
       { type: 'pattern', message: 'El número de teléfono debe contener únicamente 9 valores numéricos.' }
     ],
-    Location: [
+    Community: [
       {
         type: 'required', message: 'La localidad es obligatoria.'
       }

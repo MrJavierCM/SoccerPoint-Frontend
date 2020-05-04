@@ -30,19 +30,49 @@
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Localidad:</ion-label>
-        <ion-input type="search" placeholder="Introduzca localidad" [(ngModel)]="InputLocation" [ngModelOptions]="{standalone: true}" (keyup.enter)="onEnter(InputLocation)"></ion-input>
-        <ion-select formControlName="Location">
-          <ion-select-option [value]="cities">{{cities}}</ion-select-option>
+        <ion-label>Comunidad:</ion-label>
+        <ion-select formControlName="Community" (ionChange)="getProvinces()">
+          <ion-select-option [value]="Andalucia">Andalucía</ion-select-option>
+          <ion-select-option [value]="Aragon">Aragón</ion-select-option>
+          <ion-select-option [value]="Asturias">Asturias</ion-select-option>
+          <ion-select-option [value]="Canarias">Canarias</ion-select-option>
+          <ion-select-option [value]="Cantabria">Cantabria</ion-select-option>
+          <ion-select-option [value]="Castilla_La_Mancha">Castilla-La Mancha</ion-select-option>
+          <ion-select-option [value]="Castilla_Leon">Castilla y León</ion-select-option>
+          <ion-select-option [value]="Catalunya">Cataluña</ion-select-option>
+          <ion-select-option [value]="Ceuta">Ceuta</ion-select-option>
+          <ion-select-option [value]="Comunitat_Valenciana">Comunitat Valenciana</ion-select-option>
+          <ion-select-option [value]="Pais_Vasco">País Vasco</ion-select-option>
+          <ion-select-option [value]="Extremadura">Extremadura</ion-select-option>
+          <ion-select-option [value]="Galicia">Galicia</ion-select-option>
+          <ion-select-option [value]="Islas_Baleares">Islas Baleares</ion-select-option>
+          <ion-select-option [value]="Islas_Canarias">Islas Canarias</ion-select-option>
+          <ion-select-option [value]="La_Rioja">La Rioja</ion-select-option>
+          <ion-select-option [value]="Madrid">Comunidad de Madrid</ion-select-option>
+          <ion-select-option [value]="Melilla">Melilla</ion-select-option>
+          <ion-select-option [value]="Murcia">Región de Murcia</ion-select-option>
+          <ion-select-option [value]="Navarra">Comunidad Foral de Navarra</ion-select-option>
         </ion-select>
       </ion-item>
       <div>
-        <ng-container *ngFor="let validation of validation_messages.Location">
-          <div *ngIf="registForm.get('Location').hasError(validation.type) && (registForm.get('Location').dirty || registForm.get('Location').touched)">
+        <ng-container *ngFor="let validation of validation_messages.Community">
+          <div *ngIf="registForm.get('Community').hasError(validation.type) && (registForm.get('Community').dirty || registForm.get('Community').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
+      <ion-item>
+        <ion-label>Provincia:</ion-label>
+        <ion-select formControlName="Province" (ionChange)="getLocalities()">
+          <ion-select-option *ngFor="let province of provinces" [value]="province">{{ province }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Localidad:</ion-label>
+        <ion-select formControlName="Locality">
+          <ion-select-option *ngFor="let locality of localities" [value]="province">{{ locality }}</ion-select-option>
+        </ion-select>
+      </ion-item>
       <ion-item>
         <ion-label>Direccón:</ion-label>
         <ion-input formControlName="Address"></ion-input>
