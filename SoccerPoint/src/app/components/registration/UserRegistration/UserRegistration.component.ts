@@ -63,7 +63,7 @@ export class UserRegistrationComponent implements OnInit {
       this.registForm.value.Email
       );
     console.log(user);
-    this.usersService.postUser(user);
+    this.usersService.postUser(user, this.registForm.value.Password);
   }
   
   protected validation_messages = {

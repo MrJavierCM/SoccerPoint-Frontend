@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,23 @@ export class HomePage {
 
   constructor(
     protected formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    protected usersService: UsersService
   ) {
     this.loginForm = formBuilder.group({
-      Username: new FormControl('', Validators.compose([
+      Email: new FormControl('', Validators.compose([
         Validators.required,
       ])),
       Password: new FormControl('', Validators.compose([
         Validators.required,
       ])),
   })
+  }
+
+  login(){
+    if(this.usersService.login(this.loginForm.value)){
+         this.router.navigateByUrl('main');
+    }
   }
 
   userRegister(){

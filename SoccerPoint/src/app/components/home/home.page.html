@@ -10,10 +10,10 @@
     <form [formGroup]="loginForm" (ngSumbit)="login()">
       <ion-list>
         <ion-item>
-          <ion-label>Usuario:</ion-label>
+          <ion-label>Email:</ion-label>
           <ion-chip>
             <ion-icon name="person-circle-outline"></ion-icon>
-            <ion-input type="text" formControlName="Username"></ion-input>
+            <ion-input type="text" formControlName="Email"></ion-input>
           </ion-chip>
         </ion-item>
         <ion-item>
@@ -26,6 +26,7 @@
       </ion-list>
     </form>
   <div>
+    <ion-button (click)="login()">Login</ion-button>
     <ion-button (click)="userRegister()">Registrarse como usuario</ion-button>
     <ion-button (click)="pubRegister()">Registrarse como establecimiento</ion-button>
   </div>

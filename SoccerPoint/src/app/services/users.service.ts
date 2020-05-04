@@ -9,6 +9,8 @@ export class UsersService {
   protected url ='http://localhost:3000/api/';
 
   protected headers = new Headers();
+
+  protected userExist: boolean = false;
   
 
   constructor(public http: HttpClient) {  }
@@ -21,22 +23,49 @@ export class UsersService {
       return respJSON;
   }
 
-  postUser(data){
+  async login(data){
+    const req = this.url + 'Login'
+    const send = await fetch(req,{
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(function(response){
+      if(response.ok){
+        var respuesta = response.json();
+        return true;
+      }
+    })
+    .catch(function(error){
+      return false;
+    })
+  }
+
+  postUser(data, password){
+    var jsonContent = [data, password];
     this.headers. set('Content-Type', 'application/json');
     fetch(this.url+'new-user', {
       method: 'POST',
       headers: this.headers,
       mode: 'cors',
-      body: JSON.stringify(data),
-    }).then(function(response){
+      body: JSON.stringify(jsonContent),
+    }).then(async function(response){
       if(response.ok){
-        ((res) => res.json())
+        var respuesta = await response.json()
+        console.log(respuesta)
+        console.log('ESTO ES UNA PRUEBA: ' + response);
+        return respuesta;
       } else {
         console.log('Respuesta de red OK pero respuesta HTTP no OK');
       }      
     })
     .catch(function(error){
-      console.log('Hubo un problema con la petición Fetch:' + error.message);
+      if(error.code == 'auth/email-already-in-use'){
+        console.log('EMAIL EN USOOOOOO')
+      }
+      console.log('ERROR: '+ error);
+      console.log('Hubo un problema con la petición Fetch: ' + error.message);
     });
   }
 
