@@ -14,13 +14,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PubRegistrationComponent } from './components/registration/pub-registration/pub-registration.component';
 import { LocationsService } from './services/locations.service';
+import { LocationComponent } from './components/location/location.component';
+import { LeagueComponent } from './components/league/league/league.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     UserRegistrationComponent,
-    PubRegistrationComponent
+    PubRegistrationComponent,
+    LocationComponent,
+    LeagueComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),

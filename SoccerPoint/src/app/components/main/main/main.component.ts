@@ -17,8 +17,8 @@ export class MainComponent implements OnInit {
       case "location":
         this.router.navigateByUrl('main/location');
         break;
-        case "results":
-        this.router.navigateByUrl('main/results');
+        case "league":
+        this.router.navigateByUrl('main/league');
         break;
         case "team":
         this.router.navigateByUrl('main/team');

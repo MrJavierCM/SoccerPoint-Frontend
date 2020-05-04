@@ -3,15 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './components/main/main/main.component';
 import { UserRegistrationComponent } from './components/registration/UserRegistration/UserRegistration.component';
 import { PubRegistrationComponent } from './components/registration/pub-registration/pub-registration.component';
+import { LocationComponent } from './components/location/location.component';
+import { LeagueComponent } from './components/league/league/league.component';
 
 const routes: Routes = [
   { 
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full' 
   },
   { 
-    path: 'home', 
+    path: 'login', 
     loadChildren: () => import('./components/home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -25,7 +27,18 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+    children: [
+      {
+        path: 'location',
+        component: LocationComponent
+      },
+      {
+        path: 'league',
+        component: LeagueComponent
+      }
+    ]
   }
+
 ];
 
 @NgModule({
