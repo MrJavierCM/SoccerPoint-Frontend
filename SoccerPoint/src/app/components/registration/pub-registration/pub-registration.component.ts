@@ -13,7 +13,6 @@ import { LoadingController } from '@ionic/angular';
 })
 export class PubRegistrationComponent implements OnInit {
   protected registForm: FormGroup;
-  protected cities: any;
   protected provinces: String[] = [];
   protected localities: String[] = [];
 

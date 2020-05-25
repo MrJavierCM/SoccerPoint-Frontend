@@ -5,6 +5,8 @@ import { UserRegistrationComponent } from './components/registration/UserRegistr
 import { PubRegistrationComponent } from './components/registration/pub-registration/pub-registration.component';
 import { LocationComponent } from './components/location/location.component';
 import { LeagueComponent } from './components/league/league/league.component';
+import { TeamComponent } from './components/team/team.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   { 
@@ -35,6 +37,14 @@ const routes: Routes = [
       {
         path: 'league',
         component: LeagueComponent
+      },
+      {
+        path: 'team',
+        component: TeamComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
       }
     ]
   }

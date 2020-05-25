@@ -16,6 +16,9 @@ import { PubRegistrationComponent } from './components/registration/pub-registra
 import { LocationsService } from './services/locations.service';
 import { LocationComponent } from './components/location/location.component';
 import { LeagueComponent } from './components/league/league/league.component';
+import { TeamComponent } from './components/team/team.component';
+import { FootballService } from './services/football.service';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { LeagueComponent } from './components/league/league/league.component';
     UserRegistrationComponent,
     PubRegistrationComponent,
     LocationComponent,
-    LeagueComponent
+    LeagueComponent,
+    TeamComponent,
+    SettingsComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),
@@ -36,7 +41,8 @@ import { LeagueComponent } from './components/league/league/league.component';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    LocationsService
+    LocationsService,
+    FootballService
   ],
   bootstrap: [AppComponent]
 })
