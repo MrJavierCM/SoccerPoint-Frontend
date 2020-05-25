@@ -51,4 +51,28 @@ export class FootballService {
     // }
     // return start();
   }
+
+  async getInfoTeam(id){
+    var url = "https://api-football-v1.p.rapidapi.com/v2/teams/team/" + id
+    var resp = await fetch(url, {
+  	  "method": "GET",
+	    "headers": {
+		    "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+		    "x-rapidapi-key": "3199bd427bmsh4a82e3f96850bddp18508cjsn1f307202f708"
+	    }
+    })
+    return resp;
+  }
+
+  async getFixtureByTeam(id){
+    var url = "https://api-football-v1.p.rapidapi.com/v2/fixtures/team/" + id + "/775"
+    var resp = await fetch(url, {
+      "method": "GET",
+	    "headers": {
+		    "x-rapidapi-host": "api-football-v1.p.rapidapi.com",
+		    "x-rapidapi-key": "3199bd427bmsh4a82e3f96850bddp18508cjsn1f307202f708"
+	    }
+    })
+    return resp;
+  }
 }

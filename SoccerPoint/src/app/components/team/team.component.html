@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccione una localidad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Selecciona a tú equipo favorito</ion-label>
+  <ion-select [(ngModel)]="teamID" (ionChange)="getInfoTeam()">
+    <ion-select-option value="542">Deportivo Alavés</ion-select-option>
+    <ion-select-option value="531">Athletic Club</ion-select-option>
+    <ion-select-option value="530">Atlético de Madrid</ion-select-option>
+    <ion-select-option value="529">FC Barcelona</ion-select-option>
+    <ion-select-option value="543">Real Betis</ion-select-option>
+    <ion-select-option value="538">Celta</ion-select-option>
+    <ion-select-option value="545">Eibar</ion-select-option>
+    <ion-select-option value="540">Espanyol</ion-select-option>
+    <ion-select-option value="546">Getafe</ion-select-option>
+    <ion-select-option value="715">Granada</ion-select-option>
+    <ion-select-option value="537">Leganés</ion-select-option>
+    <ion-select-option value="539">Levante</ion-select-option>
+    <ion-select-option value="798">Mallorca</ion-select-option>
+    <ion-select-option value="727">Osasuna</ion-select-option>
+    <ion-select-option value="548">Real Sociedad</ion-select-option>
+    <ion-select-option value="541">Real Madrid</ion-select-option>
+    <ion-select-option value="720">Real Valladolid</ion-select-option>
+    <ion-select-option value="536">Sevilla</ion-select-option>
+    <ion-select-option value="532">Valencia</ion-select-option>
+    <ion-select-option value="533">Villarreal</ion-select-option>
+  </ion-select>
+  <ion-card *ngIf="teamSelected">
+    <ion-img src="{{infoTeam.logo}}"></ion-img>
+    <ion-label>Nombre: {{ infoTeam.name }}</ion-label>
+    <ion-label>Estadio:  {{ infoTeam.venue_name }}</ion-label>
+  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let game of fixtures">
+      <ion-label>{{ game["homeTeam"].team_name }} {{game["goalsHomeTeam"]}} VS {{game["goalsAwayTeam"]}} {{ game["awayTeam"].team_name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
