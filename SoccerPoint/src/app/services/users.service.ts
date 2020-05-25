@@ -25,26 +25,32 @@ export class UsersService {
 
   async login(data){
     const req = this.url + 'Login'
-    const send = await fetch(req,{
+    var resp = await fetch(req,{
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(function(response){
-      if(response.ok){
-        var respuesta = response.json();
-        return true;
-      }
     })
-    .catch(function(error){
-      return false;
-    })
+    console.log("RESPUESTA DEL LOGIN: " + resp)    
+    return resp;
+    
+    // .then(async function(response){
+    //    if(response.ok){
+    //      var respuesta = await response.json();
+    //      console.log("RESPUESTA DEL LOGIN :" + respuesta)
+    //      return respuesta;
+    //    }
+    //  })
+    //  .catch(function(error){
+    //    console.log("ERROOOOOR: " + error)
+    //    return false;
+    //  })
   }
 
   postUser(data, password){
     var jsonContent = [data, password];
-    this.headers. set('Content-Type', 'application/json');
+    this.headers.set('Content-Type', 'application/json');
     fetch(this.url+'new-user', {
       method: 'POST',
       headers: this.headers,
