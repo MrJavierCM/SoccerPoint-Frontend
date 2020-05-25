@@ -26,10 +26,15 @@ export class HomePage {
   })
   }
 
-  login(){
-    if(this.usersService.login(this.loginForm.value)){
-         this.router.navigateByUrl('main');
+  async login(){
+    var ok = await this.usersService.login(this.loginForm.value)
+    var okJSON = await ok.json();
+    if(okJSON){
+      this.router.navigateByUrl('main/league');
+    } else {
+      console.log("ERRORRRRRRRRRRR")
     }
+    
   }
 
   userRegister(){
