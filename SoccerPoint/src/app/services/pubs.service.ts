@@ -12,16 +12,26 @@ export class PubsService {
   
   constructor(public http: HttpClient) {  }
 
-  async getPubs(){
-    const req = this.url + 'Pubs';
-    const resp = await fetch(req);
-    const respJSON = await resp.json();
-    console.log(respJSON);
-    return respJSON;
+  async getPubsByLocality(locality){
+    console.log('ANTES DEL FETCH: ' + locality)
+    fetch(this.url + 'pubsByLocation',{
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' 
+      },
+      mode: 'cors',
+      body: JSON.stringify(locality)      
+    }).then(function(response){
+      if(response.ok){
+        console.log(response)
+      }
+    })   
+        
   }
 
   postPub(data){
-    this.headers. set('Content-Type', 'application/json');
+    this.headers.set('Content-Type', 'application/json');
     fetch(this.url+'new-pub', {
       method: 'POST',
       headers: this.headers,
