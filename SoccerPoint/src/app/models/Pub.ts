@@ -6,9 +6,9 @@ export class Pub {
     Province: string
     Community: string    
     Address: string
-    Phone: BigInteger
+    Phone: Number
 
-    constructor(name: string, nickname: string, email: string, location: string, province: string, community: string, address: string, phone: BigInteger){
+    constructor(name: string, nickname: string, email: string, location: string, province: string, community: string, address: string, phone: Number){
         this.Name = name;
         this.Nickname = nickname;
         this.Email = email;
