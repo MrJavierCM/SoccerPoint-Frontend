@@ -1,5 +1,7 @@
 {
   "name": "SoccerPoint",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
