@@ -15,6 +15,7 @@ export class PubRegistrationComponent implements OnInit {
   protected registForm: FormGroup;
   protected provinces: String[] = [];
   protected localities: String[] = [];
+  protected loadingInfo;
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -66,11 +67,15 @@ export class PubRegistrationComponent implements OnInit {
   }
 
   async getProvinces(){
+    this.showLoadingInformation();
     this.provinces = (await this.locationsService.getProvinces(this.registForm.value.Community)).sort();
+    this.stopLoadingInformation();
   }
 
   async getLocalities(){
+    this.showLoadingInformation();
     this.localities = (await this.locationsService.getLocalities(this.registForm.value.Province)).sort();
+    this.stopLoadingInformation();
   }
 
   equalTo(field_Name): ValidatorFn {
@@ -80,6 +85,21 @@ export class PubRegistrationComponent implements OnInit {
       if (!isValid) return { equalTo: { isValid } };
       else return null;
     };
+  }
+
+  async showLoadingInformation(){
+    this.loadingInfo = await this.loadingController.create({
+      spinner: 'bubbles',
+      message: 'Buscando...',
+    })
+    .then((res)=>{
+      res.present();
+      res.onDidDismiss();
+    })
+  }
+
+  async stopLoadingInformation(){
+    await this.loadingController.dismiss();
   }
   
   register(){
