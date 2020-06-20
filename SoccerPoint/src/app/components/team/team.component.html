@@ -29,9 +29,10 @@
     <ion-select-option value="533">Villarreal</ion-select-option>
   </ion-select>
   <ion-card *ngIf="teamSelected">
-    <ion-img src="{{infoTeam.logo}}"></ion-img>
-    <ion-label>Nombre: {{ infoTeam.name }}</ion-label>
-    <ion-label>Estadio:  {{ infoTeam.venue_name }}</ion-label>
+    <ion-img src="{{infoTeam.logo}}" class="image"></ion-img>
+    <div class="ion-text-center">
+      <ion-label>Nombre: {{ infoTeam.name }} &nbsp;&nbsp; Estadio:  {{ infoTeam.venue_name }}</ion-label>
+    </div>
   </ion-card>
   <ion-list>
     <ion-item *ngFor="let game of fixtures">
