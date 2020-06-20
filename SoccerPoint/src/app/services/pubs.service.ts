@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
+import { Location } from '../models/Location';
+import { Pub } from '../models/Pub';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +15,23 @@ export class PubsService {
   
   constructor(public http: HttpClient) {  }
 
-  async getPubsByLocality(locality){
-    console.log('ANTES DEL FETCH: ' + locality)
-    fetch(this.url + 'pubsByLocation',{
+  async getPubsByLocality(location: Location){
+    var headersTest = new Headers();
+    //headersTest.append('Access-Control-Allow-Origin', '*');
+    //headersTest.append('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT');
+    //headersTest.append('Accept', 'application/json');
+    headersTest.set('Content-Type', 'application/json')
+    var resp = await fetch(this.url + 'pubsByLocation',{
       method: 'POST',
-      headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*' 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       mode: 'cors',
-      body: JSON.stringify(locality)      
-    }).then(function(response){
-      if(response.ok){
-        console.log(response)
-      }
-    })   
-        
+      body: JSON.stringify(location)
+    })
+
+    return await resp.json();        
   }
 
   postPub(data){
@@ -47,5 +51,30 @@ export class PubsService {
     .catch(function(error){
       console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
+  }
+
+  async getPubByEmail(pub: Pub){
+    var resp = await fetch(this.url + 'pubsByEmail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify(pub)
+    })
+
+    return await resp.json();
+  }
+
+  async editProfile(pub: Pub, nickname: string){
+    await fetch(this.url + 'editProfile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify([pub, nickname])
+    })
   }
 }
