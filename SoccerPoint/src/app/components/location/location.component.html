@@ -48,5 +48,13 @@
       </ion-select>
     </ion-item>
   </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let pub of pubs" (click)="clickPub(pub)">
+      <ion-icon name="cafe"></ion-icon> &nbsp; &nbsp;
+      <ion-label>{{ pub.Name }}</ion-label>
+      <ion-icon name="pin"></ion-icon>&nbsp;&nbsp;
+      <ion-label>{{ pub.Address }}</ion-label>
+    </ion-item>
+  </ion-list>
 </form>
 </ion-content>
