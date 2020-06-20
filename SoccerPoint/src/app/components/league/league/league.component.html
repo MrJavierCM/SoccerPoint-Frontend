@@ -5,17 +5,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-button (click)="getCurrentFixture()">Ver jornada actual</ion-button>
-    <ion-button (click)="getFixtureByRound()">Ver jornada</ion-button>
-    <ion-select [(ngModel)]="roundFixture">
-      <ion-select-option *ngFor="let round of rounds" [value]="round">{{round}}</ion-select-option>
-    </ion-select>
-    <ion-button (click)="getStanding()">Clasificación</ion-button>
-  </ion-card>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="standing">Clasificación</ion-segment-button>
+    <ion-segment-button value="currentFixture">Jornada actual</ion-segment-button>
+    <ion-segment-button value="fixtureByRound">Jornada nº</ion-segment-button>
+  </ion-segment>
+  <ion-select [(ngModel)]="roundFixture">
+    <ion-select-option *ngFor="let round of rounds" [value]="round">{{round}}</ion-select-option>
+  </ion-select>
   <ion-list *ngIf="standingChecked">
     <ion-item *ngFor="let team of table">
-      <ion-img class="imagen" src="{{team.logo}}"></ion-img>
+      <ion-img class="imagen" src="{{team.logo}}"></ion-img> &nbsp;
       <ion-label>{{ team.rank }}º - {{ team.teamName }} - {{ team.points }}pts </ion-label>
     </ion-item>
   </ion-list>
