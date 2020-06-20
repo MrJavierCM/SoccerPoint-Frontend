@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ selectedPub.Name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-label>Fotos</ion-label>
+    <ion-item *ngFor="let image of images">
+      <ion-img></ion-img> 
+    </ion-item>
+  </ion-list>
+  <ion-label>Dirección: {{ selectedPub.Address }}</ion-label><br>
+  <ion-label>Teléfono: {{ selectedPub.Phone }}</ion-label><br>
+  <ion-label>Comentarios:</ion-label>
+</ion-content>

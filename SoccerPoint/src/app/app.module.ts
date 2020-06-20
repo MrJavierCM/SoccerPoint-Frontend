@@ -19,6 +19,8 @@ import { LeagueComponent } from './components/league/league/league.component';
 import { TeamComponent } from './components/team/team.component';
 import { FootballService } from './services/football.service';
 import { SettingsComponent } from './components/settings/settings.component';
+import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
+import { InfoPubComponent } from './components/info-pub/info-pub.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SettingsComponent } from './components/settings/settings.component';
     LocationComponent,
     LeagueComponent,
     TeamComponent,
-    SettingsComponent
+    SettingsComponent,
+    PubProfileComponent,
+    InfoPubComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),

@@ -7,6 +7,8 @@ import { LocationComponent } from './components/location/location.component';
 import { LeagueComponent } from './components/league/league/league.component';
 import { TeamComponent } from './components/team/team.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
+import { InfoPubComponent } from './components/info-pub/info-pub.component';
 
 const routes: Routes = [
   { 
@@ -32,11 +34,11 @@ const routes: Routes = [
     children: [
       {
         path: 'location',
-        component: LocationComponent
+        component: LocationComponent,
       },
       {
         path: 'league',
-        component: LeagueComponent
+        component: LeagueComponent        
       },
       {
         path: 'team',
@@ -45,8 +47,15 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: 'location/infoPub',
+        component: InfoPubComponent
       }
     ]
+  },{
+    path: 'pubProfile',
+    component: PubProfileComponent
   }
 
 ];
