@@ -21,6 +21,7 @@ import { FootballService } from './services/football.service';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
 import { InfoPubComponent } from './components/info-pub/info-pub.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { InfoPubComponent } from './components/info-pub/info-pub.component';
     TeamComponent,
     SettingsComponent,
     PubProfileComponent,
-    InfoPubComponent
+    InfoPubComponent,
+    CommentsComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),

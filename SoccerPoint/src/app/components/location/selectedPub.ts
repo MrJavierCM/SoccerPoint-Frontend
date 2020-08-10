@@ -1,3 +1,5 @@
+import { Pub } from 'src/app/models/Pub';
+
 export class SelectedPub {
-    public static selectedPub: any;
+    public static selectedPub: Pub;
 }

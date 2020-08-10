@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PubsService } from 'src/app/services/pubs.service';
 import { Pub } from 'src/app/models/Pub';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { SelectedPub } from '../location/selectedPub';
 
 @Component({
   selector: 'app-pub-profile',
@@ -9,6 +11,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./pub-profile.component.scss'],
 })
 export class PubProfileComponent implements OnInit {
+
+  protected pub = new Pub('','Prueba1','test@test.test','', '', '', '' , 600000000)
 
   protected Email: string;
   protected Name: string;
@@ -21,12 +25,12 @@ export class PubProfileComponent implements OnInit {
 
   constructor(
     protected pubService: PubsService,
-    protected alertController: AlertController
+    protected alertController: AlertController,
+    protected router: Router
     ) { }
 
   ngOnInit() {
-    var pub = new Pub('','','test@test.test','', '', '', '' , 600000000)
-    this.pubService.getPubByEmail(pub).then(response => {
+    this.pubService.getPubByEmail(this.pub).then(response => {
       this.Email = response['0'].Email;
       this.Name = response['0'].Name;
       this.Address = response['0'].Address;
@@ -42,6 +46,11 @@ export class PubProfileComponent implements OnInit {
     } else {
       this.cantEdit = true;
     }
+  }
+
+  comments(){
+    SelectedPub.selectedPub = this.pub
+    this.router.navigateByUrl('pubProfile/comments')
   }
 
   async editProfile(){

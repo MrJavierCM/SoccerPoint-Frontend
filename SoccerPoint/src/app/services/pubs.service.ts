@@ -77,4 +77,17 @@ export class PubsService {
       body: JSON.stringify([pub, nickname])
     })
   }
+
+  async commentsByPub(pub: Pub){
+    var resp = await fetch(this.url + 'commentsByPub', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify(pub)
+    })
+    return await resp.json()
+  }
 }

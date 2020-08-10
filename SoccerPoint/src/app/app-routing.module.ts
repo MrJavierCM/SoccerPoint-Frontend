@@ -9,6 +9,7 @@ import { TeamComponent } from './components/team/team.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
 import { InfoPubComponent } from './components/info-pub/info-pub.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 const routes: Routes = [
   { 
@@ -53,11 +54,15 @@ const routes: Routes = [
         component: InfoPubComponent
       }
     ]
-  },{
+  },
+  {
     path: 'pubProfile',
     component: PubProfileComponent
+  },
+  {
+    path: 'pubProfile/comments',
+    component: CommentsComponent
   }
-
 ];
 
 @NgModule({

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Comentarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let comment of comments">
+      <ion-label> Usuario: {{ comment.User }} </ion-label>&nbsp;
+      <ion-label> Fecha: {{ comment.Date }} </ion-label>&nbsp;
+      <ion-textarea> Comentario: {{ comment.Commentary }} </ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

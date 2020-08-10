@@ -1,3 +1,5 @@
+import { Comment } from './Comment'
+
 export class Pub {
     Name: string
     Nickname: string

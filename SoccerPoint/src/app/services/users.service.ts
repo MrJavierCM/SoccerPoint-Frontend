@@ -34,18 +34,6 @@ export class UsersService {
     })
     console.log("RESPUESTA DEL LOGIN: " + resp)    
     return resp;
-    
-    // .then(async function(response){
-    //    if(response.ok){
-    //      var respuesta = await response.json();
-    //      console.log("RESPUESTA DEL LOGIN :" + respuesta)
-    //      return respuesta;
-    //    }
-    //  })
-    //  .catch(function(error){
-    //    console.log("ERROOOOOR: " + error)
-    //    return false;
-    //  })
   }
 
   postUser(data, password){
@@ -73,6 +61,17 @@ export class UsersService {
       console.log('ERROR: '+ error);
       console.log('Hubo un problema con la petición Fetch: ' + error.message);
     });
+  }
+
+  async getInfoUser(nick){
+    var resp = await fetch(this.url+'infoUser',{
+      method: 'POST',
+      headers: this.headers,
+      mode: 'cors',
+      body: JSON.stringify(nick),
+    })
+    console.log(resp.json())
+    return resp;
   }
 
 }
