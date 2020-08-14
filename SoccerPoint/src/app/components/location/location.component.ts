@@ -56,7 +56,8 @@ export class LocationComponent implements OnInit {
   }
 
   clickPub(pub){
-    SelectedPub.selectedPub = pub
+    var infoPub = new Pub(pub.Name, pub.Nickname, pub.Email, pub.Location, pub.Province, pub.Community, pub.Address, pub.Phone)
+    SelectedPub.selectedPub = infoPub
     this.router.navigateByUrl('main/location/infoPub');
   }
 

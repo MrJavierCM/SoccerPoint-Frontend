@@ -48,6 +48,10 @@ export class PubProfileComponent implements OnInit {
     }
   }
 
+  images() {
+    this.router.navigateByUrl('pubProfile/pubImages')
+  }
+
   comments(){
     SelectedPub.selectedPub = this.pub
     this.router.navigateByUrl('pubProfile/comments')

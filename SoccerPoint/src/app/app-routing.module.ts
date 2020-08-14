@@ -10,6 +10,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
 import { InfoPubComponent } from './components/info-pub/info-pub.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { PubImagesComponent } from './components/pub-images/pub-images.component';
 
 const routes: Routes = [
   { 
@@ -57,11 +58,15 @@ const routes: Routes = [
   },
   {
     path: 'pubProfile',
-    component: PubProfileComponent
+    component: PubProfileComponent,
   },
   {
     path: 'pubProfile/comments',
     component: CommentsComponent
+  },
+  {
+    path: 'pubProfile/pubImages',
+    component: PubImagesComponent
   }
 ];
 

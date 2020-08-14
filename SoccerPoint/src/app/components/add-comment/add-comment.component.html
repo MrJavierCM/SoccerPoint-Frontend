@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Añadir comentario </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-label>Comentario:</ion-label>
+    <ion-textarea [(ngModel)]="comment" name="comment" inputmode="text" required="true" placeholder="Inserte aquí su comentario..."></ion-textarea>
+  </form>
+  <ion-button (click)="addComment()">Publicar</ion-button>
+  <ion-button (click)="close()">Cancelar</ion-button>
+</ion-content>

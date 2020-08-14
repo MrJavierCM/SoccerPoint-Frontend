@@ -13,5 +13,13 @@
   </ion-list>
   <ion-label>Dirección: {{ selectedPub.Address }}</ion-label><br>
   <ion-label>Teléfono: {{ selectedPub.Phone }}</ion-label><br>
-  <ion-label>Comentarios:</ion-label>
+  <ion-label>Comentarios:</ion-label> <ion-button (click)="addComment()"><ion-icon name="add-circle"></ion-icon></ion-button>
+  <ion-item *ngFor="let comment of comments">
+    <ion-label position="stacked"> Usuario: </ion-label>
+      <ion-input readonly="true">{{ comment.User }} </ion-input>
+      <ion-label position="stacked"> Fecha: </ion-label>
+      <ion-input readonly="true">{{ comment.Date }} </ion-input>
+      <ion-label position="stacked"> Comentario: </ion-label>
+      <ion-textarea type="text" readonly="true" maxlength="500" autoGrow="true"> {{ comment.Commentary }} </ion-textarea>
+  </ion-item>
 </ion-content>

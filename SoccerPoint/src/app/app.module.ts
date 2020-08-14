@@ -22,6 +22,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PubProfileComponent } from './components/pub-profile/pub-profile.component';
 import { InfoPubComponent } from './components/info-pub/info-pub.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { Camera } from '@ionic-native/camera/ngx'
+import { PubImagesComponent } from './components/pub-images/pub-images.component';
+import { AddCommentComponent } from './components/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,11 @@ import { CommentsComponent } from './components/comments/comments.component';
     SettingsComponent,
     PubProfileComponent,
     InfoPubComponent,
-    CommentsComponent
+    CommentsComponent,
+    PubImagesComponent,
+    AddCommentComponent
   ],
-  entryComponents: [],
+  entryComponents: [AddCommentComponent],
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
@@ -48,7 +53,8 @@ import { CommentsComponent } from './components/comments/comments.component';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     LocationsService,
-    FootballService
+    FootballService,
+    Camera
   ],
   bootstrap: [AppComponent]
 })
