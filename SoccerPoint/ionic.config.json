@@ -1,7 +1,8 @@
 {
   "name": "SoccerPoint",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
