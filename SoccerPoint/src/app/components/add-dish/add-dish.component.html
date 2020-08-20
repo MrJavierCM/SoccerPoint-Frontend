@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Añadir plato</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Nombre:</ion-label>
+  <ion-input [(ngModel)]="name" name="name" type="text" required="true"></ion-input>
+  <ion-label>Precio:</ion-label>
+  <ion-input [(ngModel)]="price" name="price" type="number" required="true"></ion-input>
+  <ion-button (click)="createDish()"></ion-button>
+</ion-content>

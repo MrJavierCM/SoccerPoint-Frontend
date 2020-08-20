@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ReplaySubject } from 'rxjs';
 import { Location } from '../models/Location';
 import { Pub } from '../models/Pub';
+import { Dish } from '../models/Dish';
 
 @Injectable({
   providedIn: 'root'
@@ -89,5 +89,17 @@ export class PubsService {
       body: JSON.stringify(pub)
     })
     return await resp.json()
+  }
+
+  async newDish(addDish){
+    await fetch(this.url + 'addDish', {
+      method: 'POST',
+      headers: {        
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify(addDish)
+    })
   }
 }

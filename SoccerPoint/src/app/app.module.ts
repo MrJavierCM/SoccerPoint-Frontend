@@ -25,6 +25,8 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { Camera } from '@ionic-native/camera/ngx'
 import { PubImagesComponent } from './components/pub-images/pub-images.component';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
+import { AddDishComponent } from './components/add-dish/add-dish.component';
+import { PubMenuComponent } from './components/pub-menu/pub-menu.component';
 
 @NgModule({
   declarations: [
@@ -40,14 +42,17 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
     InfoPubComponent,
     CommentsComponent,
     PubImagesComponent,
-    AddCommentComponent
+    AddCommentComponent,
+    PubMenuComponent,
+    AddDishComponent
   ],
-  entryComponents: [AddCommentComponent],
+  entryComponents: [AddCommentComponent, AddDishComponent],
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule],
+    HttpClientModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,

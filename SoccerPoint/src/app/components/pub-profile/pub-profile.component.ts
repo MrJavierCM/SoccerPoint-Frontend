@@ -57,6 +57,11 @@ export class PubProfileComponent implements OnInit {
     this.router.navigateByUrl('pubProfile/comments')
   }
 
+  menu(){
+    SelectedPub.selectedPub = this.pub
+    this.router.navigateByUrl('pubProfile/pubMenu')
+  }
+
   async editProfile(){
     var pub = new Pub(this.Name, this.Nickname,this.Email, this.Location, '', '', this.Address, this.Phone);
     await this.pubService.editProfile(pub, this.Nickname);

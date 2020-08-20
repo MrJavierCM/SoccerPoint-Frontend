@@ -11,6 +11,8 @@ import { PubProfileComponent } from './components/pub-profile/pub-profile.compon
 import { InfoPubComponent } from './components/info-pub/info-pub.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { PubImagesComponent } from './components/pub-images/pub-images.component';
+import { Pub } from './models/Pub';
+import { PubMenuComponent } from './components/pub-menu/pub-menu.component';
 
 const routes: Routes = [
   { 
@@ -67,6 +69,10 @@ const routes: Routes = [
   {
     path: 'pubProfile/pubImages',
     component: PubImagesComponent
+  },
+  {
+    path: 'pubProfile/pubMenu',
+    component: PubMenuComponent
   }
 ];
 
