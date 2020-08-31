@@ -5,6 +5,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { PubsService } from 'src/app/services/pubs.service';
 import { CurrentPub } from 'src/app/data/CurrentPub'
 import { CurrentClient } from 'src/app/data/currentClient';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomePage {
     protected formBuilder: FormBuilder,
     private router: Router,
     protected usersService: UsersService,
-    protected pubsService: PubsService
+    protected pubsService: PubsService,
+    protected alertController: AlertController
   ) {
     this.loginForm = formBuilder.group({
       Email: new FormControl('', Validators.compose([
@@ -39,7 +41,8 @@ export class HomePage {
         CurrentClient.email = response[nick].Email;
         CurrentClient.userName = response[nick].Name;
         CurrentClient.surname = response[nick].Surname;
-        CurrentClient.nickName = response[nick].Nickname 
+        CurrentClient.nickName = response[nick].Nickname;
+        CurrentClient.isClient = true;
       });
 
       this.router.navigateByUrl('main/location');
@@ -52,11 +55,39 @@ export class HomePage {
         CurrentPub.phone = response[nick].Phone;
         CurrentPub.location = response[nick].Location;
         CurrentPub.nickName = response[nick].Nickname;
+        CurrentPub.isBar = true;
       });
 
       await this.router.navigateByUrl('pubProfile')
+    } else {
+      this.checkErrors(Object.values(ok)[0])
     }
     
+  }
+
+  async checkErrors(errorCode){
+    if(errorCode == "auth/user-not-found"){
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No existe un usuario con ese correo electrónico.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+    } else if(errorCode == "auth/wrong-password"){
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Contraseña incorrecta.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Ha ocurrido un error. Vuelva a intentarlo.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+    }
   }
 
   userRegister(){
