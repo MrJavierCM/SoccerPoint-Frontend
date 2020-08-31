@@ -8,29 +8,29 @@
   <form [formGroup]="registForm" (ngSumbit)="regist()">
     <ion-list>
       <ion-item>
-        <ion-label>Nombre del establecimiento</ion-label>
+        <ion-label class="label">Nombre del establecimiento</ion-label>
         <ion-input formControlName="PubName"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.PubName">
-          <div *ngIf="registForm.get('PubName').hasError(validation.type) && (registForm.get('PubName').dirty || registForm.get('PubName').touched)">
+          <div class="div" *ngIf="registForm.get('PubName').hasError(validation.type) && (registForm.get('PubName').dirty || registForm.get('PubName').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Nombre de usuario:</ion-label>
+        <ion-label class="label">Nombre de usuario:</ion-label>
         <ion-input formControlName="Nickname"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Nickname">
-          <div *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
+          <div class="div" *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Comunidad:</ion-label>
+        <ion-label class="label">Comunidad:</ion-label>
         <ion-select formControlName="Community" (ionChange)="getProvinces()">
           <ion-select-option [value]="Andalucia">Andalucía</ion-select-option>
           <ion-select-option [value]="Aragon">Aragón</ion-select-option>
@@ -56,74 +56,74 @@
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Community">
-          <div *ngIf="registForm.get('Community').hasError(validation.type) && (registForm.get('Community').dirty || registForm.get('Community').touched)">
+          <div class="div" *ngIf="registForm.get('Community').hasError(validation.type) && (registForm.get('Community').dirty || registForm.get('Community').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Provincia:</ion-label>
+        <ion-label class="label">Provincia:</ion-label>
         <ion-select formControlName="Province" (ionChange)="getLocalities()">
           <ion-select-option *ngFor="let province of provinces" [value]="province">{{ province }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Localidad:</ion-label>
+        <ion-label class="label">Localidad:</ion-label>
         <ion-select formControlName="Locality">
           <ion-select-option *ngFor="let locality of localities" [value]="locality">{{ locality }}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label>Direccón:</ion-label>
+        <ion-label class="label">Direccón:</ion-label>
         <ion-input formControlName="Address"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Address">
-          <div *ngIf="registForm.get('Address').hasError(validation.type) && (registForm.get('Address').dirty || registForm.get('Address').touched)">
+          <div class="div" *ngIf="registForm.get('Address').hasError(validation.type) && (registForm.get('Address').dirty || registForm.get('Address').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Teléfono de contacto:</ion-label>
+        <ion-label class="label">Teléfono de contacto:</ion-label>
         <ion-input formControlName="Phone"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Phone">
-          <div *ngIf="registForm.get('Phone').hasError(validation.type) && (registForm.get('Phone').dirty || registForm.get('Phone').touched)">
+          <div class="div" *ngIf="registForm.get('Phone').hasError(validation.type) && (registForm.get('Phone').dirty || registForm.get('Phone').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Correo electrónico:</ion-label>
+        <ion-label class="label">Correo electrónico:</ion-label>
         <ion-input formControlName="Email"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.Email">
-        <div *ngIf="registForm.get('Email').hasError(validation.type) && (registForm.get('Email').dirty || registForm.get('Email').touched)">
+        <div class="div" *ngIf="registForm.get('Email').hasError(validation.type) && (registForm.get('Email').dirty || registForm.get('Email').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
     </div>
       <ion-item>
-        <ion-label>Contraseña:</ion-label>
+        <ion-label class="label">Contraseña:</ion-label>
         <ion-input formControlName="Password" type="Password"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.Password">
-        <div *ngIf="registForm.get('Password').hasError(validation.type) && (registForm.get('Password').dirty || registForm.get('Password').touched)">
+        <div class="div" *ngIf="registForm.get('Password').hasError(validation.type) && (registForm.get('Password').dirty || registForm.get('Password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
     </div>
       <ion-item>
-        <ion-label>Confirmar contraseña:</ion-label>
+        <ion-label class="label">Confirmar contraseña:</ion-label>
         <ion-input formControlName="ConfirmPassword" type="Password"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.ConfirmPassword">
-        <div *ngIf="registForm.get('ConfirmPassword').hasError(validation.type) && (registForm.get('ConfirmPassword').dirty || registForm.get('ConfirmPassword').touched)">
+        <div class="div" *ngIf="registForm.get('ConfirmPassword').hasError(validation.type) && (registForm.get('ConfirmPassword').dirty || registForm.get('ConfirmPassword').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
@@ -132,6 +132,6 @@
   </form>
   <div align="center">
     <ion-button color="warning" (click)="showAlertCancel()">Cancelar</ion-button>
-    <ion-button color="primary" (click)="showAlertRegist()">Crear</ion-button>
+    <ion-button class="button" (click)="showAlertRegist()" [disabled]="!registForm.valid">Crear</ion-button>
   </div>
 </ion-content>

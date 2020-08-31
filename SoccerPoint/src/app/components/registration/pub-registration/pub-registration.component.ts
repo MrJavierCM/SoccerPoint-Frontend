@@ -108,6 +108,7 @@ export class PubRegistrationComponent implements OnInit {
   async showAlertCancel(){
     const alert = await this.alertController.create({
       header: 'Atención',
+      cssClass: 'alertCss',
       message: '¿Deseas volver a la pantalla de inicio?',
       buttons: [
         {
@@ -129,6 +130,7 @@ export class PubRegistrationComponent implements OnInit {
     const alert = await this.alertController.create({
       header: 'Atención',
       message: '¿Desea registrarse en la aplicación?',
+      cssClass: 'alertCss',
       buttons: [
         {
           text: 'Cancelar',

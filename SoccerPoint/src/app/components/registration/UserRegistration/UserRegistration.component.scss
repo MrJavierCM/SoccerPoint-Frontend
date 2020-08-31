@@ -1,6 +1,7 @@
 ion-input{
     font-family: estiloFuente;
-    --color: #000000;
+    --color: #FFFFFF;
+    text-align: center;
 }
 
 ion-content{
@@ -15,10 +16,19 @@ ion-toolbar{
 .label{
     font-family: estiloFuente;
     font-style: bold;
-    //background-color: #020CA8 !important;
     --color: #000000;
 }
 
 .button{
     --background-color: #020CA8;
+}
+
+.div{
+    background-color: #FFBFBF;
+    color: #DC0000;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-style: dotted;
+    border-color: #DC0000;
+    border-radius: 5px;
 }

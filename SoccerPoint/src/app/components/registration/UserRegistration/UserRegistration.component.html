@@ -8,67 +8,67 @@
   <form [formGroup]="registForm" (ngSumbit)="regist()">
     <ion-list>
       <ion-item>
-        <ion-label class="label" position="stacked">Nombre:</ion-label>
+        <ion-label class="label" >Nombre:</ion-label>
         <ion-input formControlName="Username"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Username">
-          <div *ngIf="registForm.get('Username').hasError(validation.type) && (registForm.get('Username').dirty || registForm.get('Username').touched)">
+          <div class="div" *ngIf="registForm.get('Username').hasError(validation.type) && (registForm.get('Username').dirty || registForm.get('Username').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label class="label" position="stacked">Apellidos</ion-label>
+        <ion-label class="label" >Apellidos</ion-label>
         <ion-input formControlName="Surname"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Surname">
-          <div *ngIf="registForm.get('Surname').hasError(validation.type) && (registForm.get('Surname').dirty || registForm.get('Surname').touched)">
+          <div class="div" *ngIf="registForm.get('Surname').hasError(validation.type) && (registForm.get('Surname').dirty || registForm.get('Surname').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label class="label" position="stacked">Nombre de usuario:</ion-label>
+        <ion-label class="label" >Nombre de usuario:</ion-label>
         <ion-input formControlName="Nickname"></ion-input>
       </ion-item>
       <div>
         <ng-container *ngFor="let validation of validation_messages.Nickname">
-          <div *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
+          <div class="div" *ngIf="registForm.get('Nickname').hasError(validation.type) && (registForm.get('Nickname').dirty || registForm.get('Nickname').touched)">
             {{ validation.message }}
           </div>
         </ng-container>
       </div>
       <ion-item>
-        <ion-label class="label" position="stacked">Correo electrónico:</ion-label>
+        <ion-label class="label" >Correo electrónico:</ion-label>
         <ion-input formControlName="Email"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.Email">
-        <div *ngIf="registForm.get('Email').hasError(validation.type) && (registForm.get('Email').dirty || registForm.get('Email').touched)">
+        <div class="div" *ngIf="registForm.get('Email').hasError(validation.type) && (registForm.get('Email').dirty || registForm.get('Email').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
     </div>
       <ion-item>
-        <ion-label class="label" position="stacked">Contraseña:</ion-label>
+        <ion-label class="label" >Contraseña:</ion-label>
         <ion-input formControlName="Password" type="Password"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.Password">
-        <div *ngIf="registForm.get('Password').hasError(validation.type) && (registForm.get('Password').dirty || registForm.get('Password').touched)">
+        <div class="div" *ngIf="registForm.get('Password').hasError(validation.type) && (registForm.get('Password').dirty || registForm.get('Password').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
     </div>
       <ion-item>
-        <ion-label class="label" position="stacked">Confirmar contraseña:</ion-label>
+        <ion-label class="label">Confirmar contraseña:</ion-label>
         <ion-input formControlName="ConfirmPassword" type="Password"></ion-input>
       </ion-item>
       <div>
       <ng-container *ngFor="let validation of validation_messages.ConfirmPassword">
-        <div *ngIf="registForm.get('ConfirmPassword').hasError(validation.type) && (registForm.get('ConfirmPassword').dirty || registForm.get('ConfirmPassword').touched)">
+        <div class="div" *ngIf="registForm.get('ConfirmPassword').hasError(validation.type) && (registForm.get('ConfirmPassword').dirty || registForm.get('ConfirmPassword').touched)">
           {{ validation.message }}
         </div>
       </ng-container>
@@ -77,6 +77,6 @@
   </form>
   <div align="center">
     <ion-button color="warning" (click)="showAlertCancel()">Cancelar</ion-button>
-    <ion-button color="primary" (click)="showAlertRegist()">Crear</ion-button>
+    <ion-button color="primary" (click)="showAlertRegist()" [disabled] = "!registForm.valid">Crear</ion-button>
   </div>
 </ion-content>
