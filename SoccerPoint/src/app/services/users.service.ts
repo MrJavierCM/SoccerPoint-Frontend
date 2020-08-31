@@ -15,25 +15,30 @@ export class UsersService {
 
   constructor(public http: HttpClient) {  }
 
-  async getUsers(){
-      const req = this.url + 'Users';
-      const resp = await fetch(req);
-      const respJSON = await resp.json();
-      console.log(respJSON);
-      return respJSON;
+  async getUserByEmail(email: string){
+    var resp = await fetch(this.url + 'userByEmail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({Email: email})
+    })
+    return await resp.json();;
   }
 
   async login(data){
-    const req = this.url + 'Login'
+    const req = this.url + 'loginApp'
     var resp = await fetch(req,{
       method: 'POST',
       body: JSON.stringify(data),
+      mode: 'cors',
       headers:{
         'Content-Type': 'application/json'
       }
-    })
-    console.log("RESPUESTA DEL LOGIN: " + resp)    
-    return resp;
+    })  
+    return resp.json();
   }
 
   postUser(data, password){
@@ -74,4 +79,36 @@ export class UsersService {
     return resp;
   }
 
+  async newComment(data){
+    this.headers.set('Content-Type', 'application/json');
+    fetch(this.url+'new-comment', {
+      method: 'POST',
+      headers: this.headers,
+      mode: 'cors',
+      body: JSON.stringify(data),
+    }).then(async function(response){
+      if(response.ok){
+        var respuesta = await response.json()
+        console.log(respuesta)
+        console.log('ESTO ES UNA PRUEBA: ' + response);
+        return respuesta;
+      } else {
+        console.log('Respuesta de red OK pero respuesta HTTP no OK');
+      }      
+    });
+  }
+
+  async signOut(){
+    await fetch(this.url + 'signOut', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'aplication/json'
+      },
+      body: JSON.stringify(true)
+    }).then(function(response){
+      return response;
+    }).catch(function(error){
+      return error;
+    })
+  }
 }

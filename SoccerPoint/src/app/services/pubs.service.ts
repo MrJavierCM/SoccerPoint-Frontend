@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '../models/Location';
 import { Pub } from '../models/Pub';
-import { Dish } from '../models/Dish';
 
 @Injectable({
   providedIn: 'root'
@@ -34,34 +33,37 @@ export class PubsService {
     return await resp.json();        
   }
 
-  postPub(data){
+  postPub(data, password){
+    var jsonContent = [data, password]
     this.headers.set('Content-Type', 'application/json');
     fetch(this.url+'new-pub', {
       method: 'POST',
       headers: this.headers,
       mode: 'cors',
-      body: JSON.stringify(data),
-    }).then(function(response){
+      body: JSON.stringify(jsonContent),
+    }).then(async function(response){
       if(response.ok){
-        ((res) => res.json())
+        var respuesta = await response.json()
+        console.log(respuesta)
+        console.log('ESTO ES UNA PRUEBA: ' + response);
+        return respuesta;
       } else {
         console.log('Respuesta de red OK pero respuesta HTTP no OK');
-      }      
-    })
-    .catch(function(error){
+      }    
+    }).catch(function(error){
       console.log('Hubo un problema con la petición Fetch:' + error.message);
     });
   }
 
-  async getPubByEmail(pub: Pub){
-    var resp = await fetch(this.url + 'pubsByEmail', {
+  async getPubByEmail(email: string){
+    var resp = await fetch(this.url + 'pubByEmail', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       mode: 'cors',
-      body: JSON.stringify(pub)
+      body: JSON.stringify({Email: email})
     })
 
     return await resp.json();
@@ -101,5 +103,18 @@ export class PubsService {
       mode: 'cors',
       body: JSON.stringify(addDish)
     })
+  }
+
+  async getMenu(pub: Pub){
+    var resp = await fetch(this.url + 'menu', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify(pub)
+    })
+    return await resp.json()
   }
 }
