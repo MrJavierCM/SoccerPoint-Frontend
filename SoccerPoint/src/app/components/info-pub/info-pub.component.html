@@ -1,25 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ selectedPub.Name }}</ion-title>
+    <ion-title>{{ pubName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <!-- <ion-list>
     <ion-label>Fotos</ion-label>
     <ion-item *ngFor="let image of images">
       <ion-img></ion-img> 
     </ion-item>
-  </ion-list>
-  <ion-label>Dirección: {{ selectedPub.Address }}</ion-label><br>
-  <ion-label>Teléfono: {{ selectedPub.Phone }}</ion-label><br>
-  <ion-label>Comentarios:</ion-label> <ion-button (click)="addComment()"><ion-icon name="add-circle"></ion-icon></ion-button>
+  </ion-list> -->
+  <ion-label class="font">Dirección: {{ addressPub }}</ion-label><br>
+  <ion-label class="font">Teléfono: {{ phonePub }}</ion-label><br>
+  <ion-button (click)="watchMenu()"><ion-icon name="restaurant"></ion-icon> Ver carta</ion-button> <br>
+  <ion-label class="font">Comentarios:</ion-label> <ion-button (click)="addComment()"><ion-icon name="add-circle"></ion-icon></ion-button>
   <ion-item *ngFor="let comment of comments">
-    <ion-label position="stacked"> Usuario: </ion-label>
-      <ion-input readonly="true">{{ comment.User }} </ion-input>
-      <ion-label position="stacked"> Fecha: </ion-label>
-      <ion-input readonly="true">{{ comment.Date }} </ion-input>
-      <ion-label position="stacked"> Comentario: </ion-label>
-      <ion-textarea type="text" readonly="true" maxlength="500" autoGrow="true"> {{ comment.Commentary }} </ion-textarea>
+    <ion-label position="stacked" class="font"> Usuario: </ion-label>
+      <ion-input readonly="true" class="font">{{ comment.User }} </ion-input>
+      <ion-label position="stacked" class="font"> Fecha: </ion-label>
+      <ion-input readonly="true" class="font">{{ comment.Date }} </ion-input>
+      <ion-label position="stacked" class="font"> Comentario: </ion-label>
+      <ion-textarea type="text" readonly="true" maxlength="500" autoGrow="true" class="font"> {{ comment.Commentary }} </ion-textarea>
   </ion-item>
 </ion-content>

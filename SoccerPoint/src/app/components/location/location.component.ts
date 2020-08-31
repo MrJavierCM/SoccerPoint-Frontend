@@ -7,6 +7,7 @@ import { LoadingController } from '@ionic/angular';
 import { Location } from 'src/app/models/Location';
 import { SelectedPub } from './selectedPub';
 import { Router } from '@angular/router';
+import { CurrentPub } from 'src/app/data/CurrentPub';
 
 @Component({
   selector: 'app-location',
@@ -56,8 +57,15 @@ export class LocationComponent implements OnInit {
   }
 
   clickPub(pub){
-    var infoPub = new Pub(pub.Name, pub.Nickname, pub.Email, pub.Location, pub.Province, pub.Community, pub.Address, pub.Phone)
-    SelectedPub.selectedPub = infoPub
+    CurrentPub.pubName =  pub.Name;
+    CurrentPub.email = pub.Email;
+    CurrentPub.location = pub.Location;
+    CurrentPub.nickName = pub.Nickname;
+    CurrentPub.phone = pub.Phone;
+    CurrentPub.location = pub.Location;
+    CurrentPub.province = pub.Province;
+    CurrentPub.community = pub.Community;
+    CurrentPub.address = pub.Address
     this.router.navigateByUrl('main/location/infoPub');
   }
 

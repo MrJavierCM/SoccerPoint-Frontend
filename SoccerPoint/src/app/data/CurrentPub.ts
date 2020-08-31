@@ -1,5 +1,5 @@
 export class CurrentPub {
-    public static isBar: boolean = true;
+    public static isBar: boolean = false;
     public static email: string = "";
     public static pubName: string = "";
     public static nickName: string = "";
