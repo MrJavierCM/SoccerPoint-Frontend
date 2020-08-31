@@ -4,7 +4,8 @@ import { PubsService } from 'src/app/services/pubs.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { Pub } from 'src/app/models/Pub';
 import { Location } from 'src/app/models/Location';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pub-registration',
@@ -21,7 +22,9 @@ export class PubRegistrationComponent implements OnInit {
     protected formBuilder: FormBuilder,
     protected pubsService: PubsService,
     protected locationsService: LocationsService,
-    protected loadingController: LoadingController
+    protected loadingController: LoadingController,
+    protected router: Router,
+    protected alertController: AlertController
   ) { 
     this.registForm = formBuilder.group({
       PubName: new FormControl('', Validators.compose([
@@ -101,6 +104,50 @@ export class PubRegistrationComponent implements OnInit {
   async stopLoadingInformation(){
     await this.loadingController.dismiss();
   }
+
+  async showAlertCancel(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Deseas volver a la pantalla de inicio?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancel',
+        },{
+          text: 'Aceptar',
+          role:'Accept',
+          handler: () =>{
+            this.backLogin()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async showAlertRegist(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Desea registrarse en la aplicación?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancel',
+        },{
+          text: 'Aceptar',
+          role:'Accept',
+          handler: () =>{
+            this.register();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  backLogin(){
+      this.router.navigateByUrl('login');
+  }
   
   register(){
     var location: Location = new Location(
@@ -119,7 +166,8 @@ export class PubRegistrationComponent implements OnInit {
       this.registForm.value.Address,
       this.registForm.value.Phone
       );
-    this.pubsService.postPub(pub);
+    this.pubsService.postPub(pub, this.registForm.value.Password);
+    this.backLogin()
   }
  
   protected validation_messages = {

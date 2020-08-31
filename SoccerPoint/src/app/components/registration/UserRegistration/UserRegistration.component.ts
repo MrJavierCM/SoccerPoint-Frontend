@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { User } from 'src/app/models/User';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +15,9 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor(
     protected formBuilder: FormBuilder,
-    protected usersService: UsersService
+    protected usersService: UsersService,
+    protected router: Router,
+    protected alertController: AlertController
   ) { 
     this.registForm = formBuilder.group({
       Username: new FormControl('', Validators.compose([
@@ -55,6 +59,46 @@ export class UserRegistrationComponent implements OnInit {
     };
   }
 
+  async showAlertRegist(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Desea registrarse en la aplicación?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancel',
+        },{
+          text: 'Aceptar',
+          role:'Accept',
+          handler: () =>{
+            this.register();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async showAlertCancel(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Deseas volver a la pantalla de inicio?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancel',
+        },{
+          text: 'Aceptar',
+          role:'Accept',
+          handler: () =>{
+            this.backLogin()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   register(){
     var user: User = new User(
       this.registForm.value.Nickname,
@@ -62,8 +106,12 @@ export class UserRegistrationComponent implements OnInit {
       this.registForm.value.Surname,
       this.registForm.value.Email
       );
-    console.log(user);
     this.usersService.postUser(user, this.registForm.value.Password);
+    this.backLogin();
+  }
+
+  backLogin(){
+    this.router.navigateByUrl('login');
   }
   
   protected validation_messages = {
