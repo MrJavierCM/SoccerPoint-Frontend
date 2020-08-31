@@ -3,6 +3,7 @@ import { PubsService } from 'src/app/services/pubs.service';
 import { Pub } from 'src/app/models/Pub';
 import { SelectedPub } from '../location/selectedPub';
 import { Comment } from 'src/app/models/Comment';
+import { CurrentPub } from 'src/app/data/CurrentPub';
 
 @Component({
   selector: 'app-comments',
@@ -16,7 +17,7 @@ export class CommentsComponent implements OnInit {
   constructor(protected pubsService: PubsService) { }
 
   ngOnInit() {
-    this.selectedPub = SelectedPub.selectedPub
+    this.selectedPub = new Pub(CurrentPub.name, CurrentPub.nickName, CurrentPub.email, CurrentPub.location, CurrentPub.province, CurrentPub.community, CurrentPub.address, CurrentPub.phone)
     this.getComments()
   }
 

@@ -4,6 +4,7 @@ import { Pub } from 'src/app/models/Pub';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SelectedPub } from '../location/selectedPub';
+import { CurrentPub } from 'src/app/data/CurrentPub';
 
 @Component({
   selector: 'app-pub-profile',
@@ -11,8 +12,6 @@ import { SelectedPub } from '../location/selectedPub';
   styleUrls: ['./pub-profile.component.scss'],
 })
 export class PubProfileComponent implements OnInit {
-
-  protected pub = new Pub('','Prueba1','test@test.test','', '', '', '' , 600000000)
 
   protected Email: string;
   protected Name: string;
@@ -30,14 +29,12 @@ export class PubProfileComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.pubService.getPubByEmail(this.pub).then(response => {
-      this.Email = response['0'].Email;
-      this.Name = response['0'].Name;
-      this.Address = response['0'].Address;
-      this.Phone = response['0'].Phone;
-      this.Location = response['0'].Location;
-      this.Nickname = response['0'].Nickname;
-    });
+    this.Email = CurrentPub.email;
+    this.Name = CurrentPub.name;
+    this.Address = CurrentPub.address;
+    this.Phone = CurrentPub.phone;
+    this.Location = CurrentPub.location;
+    this.Nickname = CurrentPub.nickName;
   }
 
   edit(){
@@ -53,12 +50,12 @@ export class PubProfileComponent implements OnInit {
   }
 
   comments(){
-    SelectedPub.selectedPub = this.pub
+    //SelectedPub.selectedPub = this.pub
     this.router.navigateByUrl('pubProfile/comments')
   }
 
   menu(){
-    SelectedPub.selectedPub = this.pub
+    //SelectedPub.selectedPub = this.pub
     this.router.navigateByUrl('pubProfile/pubMenu')
   }
 
