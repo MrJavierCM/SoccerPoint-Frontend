@@ -1,21 +1,43 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="header">
     <ion-title>Liga Santander</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="standing">Clasificación</ion-segment-button>
-    <ion-segment-button value="currentFixture">Jornada actual</ion-segment-button>
-    <ion-segment-button value="fixtureByRound">Jornada nº</ion-segment-button>
-  </ion-segment>
-  <ion-select [(ngModel)]="roundFixture">
-    <ion-select-option *ngFor="let round of rounds" [value]="round">{{round}}</ion-select-option>
-  </ion-select>
+  <ion-card class="card">
+    <ion-card-content>
+      <ion-grid class="grid">
+        <ion-row>
+          <ion-col>
+            <div><ion-button expand="block" (click)="getStanding()">Clasificación</ion-button></div>
+          </ion-col>
+          <ion-col>
+            <div><ion-button expand="block" (click)="getCurrentFixture()">Jornada actual</ion-button></div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div>
+              <ion-button expand="block" (click)="getFixtureByRound()">Jornada nº</ion-button>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="marginSelect">
+              <ion-select class="ionSelect" [(ngModel)]="roundFixture">
+                <ion-select-option *ngFor="let round of rounds" [value]="round">{{round}}</ion-select-option>
+              </ion-select>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
   <ion-list *ngIf="standingChecked">
     <ion-item *ngFor="let team of table">
-      <ion-img class="imagen" src="{{team.logo}}"></ion-img> &nbsp;
+      <ion-avatar>
+        <ion-img class="imagen" src="{{team.logo}}"></ion-img>
+      </ion-avatar> &nbsp; &nbsp;   
       <ion-label>{{ team.rank }}º - {{ team.teamName }} - {{ team.points }}pts </ion-label>
     </ion-item>
   </ion-list>

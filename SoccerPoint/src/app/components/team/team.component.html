@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Seleccione una localidad</ion-title>
+    <ion-title>Equipos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-label>Selecciona a tú equipo favorito</ion-label>
+  <br>
+  <ion-label>Selecciona a un equipo</ion-label>
   <ion-select [(ngModel)]="teamID" (ionChange)="getInfoTeam()">
     <ion-select-option value="542">Deportivo Alavés</ion-select-option>
     <ion-select-option value="531">Athletic Club</ion-select-option>

@@ -1,0 +1,24 @@
+ion-input{
+    font-family: estiloFuente;
+    --color: #000000;
+}
+
+ion-content{
+    --ion-background-color: #069FF1;
+}
+
+ion-toolbar{
+    --background: #020CA8;
+    --color: #FFFFFF;
+}
+
+.label{
+    font-family: estiloFuente;
+    font-style: bold;
+    //background-color: #020CA8 !important;
+    --color: #000000;
+}
+
+.button{
+    --background-color: #020CA8;
+}

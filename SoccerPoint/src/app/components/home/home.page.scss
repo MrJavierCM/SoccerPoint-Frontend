@@ -29,3 +29,49 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.color{
+  --background: #020CA8;
+  --color: #ffffff;
+}
+
+.login{
+  --background: #020CA8;
+  --color: #ffffff;
+  font-style: bold;
+}
+
+.regist{
+  --background: #069FF1;
+}
+
+.div{
+  position: relative;
+  bottom: 0px;
+}
+
+.bold{
+  font-style: bold;
+}
+
+.chip{   
+  margin-right: 5px;
+}
+
+.logo{
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.img{
+  
+}
+
+.form{
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

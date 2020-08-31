@@ -8,7 +8,7 @@
   <form [formGroup]="registForm" (ngSumbit)="regist()">
     <ion-list>
       <ion-item>
-        <ion-label>Nombre:</ion-label>
+        <ion-label class="label" position="stacked">Nombre:</ion-label>
         <ion-input formControlName="Username"></ion-input>
       </ion-item>
       <div>
@@ -19,7 +19,7 @@
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Apellidos</ion-label>
+        <ion-label class="label" position="stacked">Apellidos</ion-label>
         <ion-input formControlName="Surname"></ion-input>
       </ion-item>
       <div>
@@ -30,7 +30,7 @@
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Nombre de usuario:</ion-label>
+        <ion-label class="label" position="stacked">Nombre de usuario:</ion-label>
         <ion-input formControlName="Nickname"></ion-input>
       </ion-item>
       <div>
@@ -41,7 +41,7 @@
         </ng-container>
       </div>
       <ion-item>
-        <ion-label>Correo electrónico:</ion-label>
+        <ion-label class="label" position="stacked">Correo electrónico:</ion-label>
         <ion-input formControlName="Email"></ion-input>
       </ion-item>
       <div>
@@ -52,7 +52,7 @@
       </ng-container>
     </div>
       <ion-item>
-        <ion-label>Contraseña:</ion-label>
+        <ion-label class="label" position="stacked">Contraseña:</ion-label>
         <ion-input formControlName="Password" type="Password"></ion-input>
       </ion-item>
       <div>
@@ -63,7 +63,7 @@
       </ng-container>
     </div>
       <ion-item>
-        <ion-label>Confirmar contraseña:</ion-label>
+        <ion-label class="label" position="stacked">Confirmar contraseña:</ion-label>
         <ion-input formControlName="ConfirmPassword" type="Password"></ion-input>
       </ion-item>
       <div>
@@ -76,7 +76,7 @@
     </ion-list>
   </form>
   <div align="center">
-    <ion-button color="warning">Cancelar</ion-button>
-    <ion-button color="primary" (click)="register()">Crear</ion-button>
+    <ion-button color="warning" (click)="showAlertCancel()">Cancelar</ion-button>
+    <ion-button color="primary" (click)="showAlertRegist()">Crear</ion-button>
   </div>
 </ion-content>

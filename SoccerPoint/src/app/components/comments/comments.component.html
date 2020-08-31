@@ -1,5 +1,9 @@
+<ion-router-outlet></ion-router-outlet>
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar> 
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
     <ion-title>Comentarios</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,12 +11,12 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let comment of comments">
-      <ion-label position="stacked"> Usuario: </ion-label>
-      <ion-input readonly="true">{{ comment.User }} </ion-input>
-      <ion-label position="stacked"> Fecha: </ion-label>
-      <ion-input readonly="true">{{ comment.Date }} </ion-input>
-      <ion-label position="stacked"> Comentario: </ion-label>
-      <ion-textarea type="text" readonly="true" maxlength="500" autoGrow="true"> {{ comment.Commentary }} </ion-textarea>
+      <ion-label class="label" position="stacked"> Usuario: </ion-label>
+      <ion-input class="fuente" readonly="true">{{ comment.User }} </ion-input>
+      <ion-label class="label" position="stacked"> Fecha: </ion-label>
+      <ion-input class="fuente" readonly="true">{{ comment.Date }} </ion-input>
+      <ion-label class="label" position="stacked"> Comentario: </ion-label>
+      <ion-textarea class="fuente" type="text" readonly="true" maxlength="500" autoGrow="true"> {{ comment.Commentary }} </ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>

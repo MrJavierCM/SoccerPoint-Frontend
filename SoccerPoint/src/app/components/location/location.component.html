@@ -1,59 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Seleccione una localidad</ion-title>
+  <ion-toolbar class="header">
+    <ion-title>Localidades</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-label>
+  <br>
+  &nbsp;&nbsp;<ion-label>
     Busca una localidad donde ver el fútbol:
   </ion-label>
   <form [formGroup]="locationForm">
   <ion-list>
     <ion-item>
-      <ion-label>Comunidad:</ion-label>
+      <ion-label class="label">Comunidad:</ion-label>
       <ion-select formControlName="Community" (ionChange)="getProvinces()">
-        <ion-select-option [value]="Andalucia">Andalucía</ion-select-option>
-        <ion-select-option [value]="Aragon">Aragón</ion-select-option>
-        <ion-select-option [value]="Asturias">Asturias</ion-select-option>
-        <ion-select-option [value]="Canarias">Canarias</ion-select-option>
-        <ion-select-option [value]="Cantabria">Cantabria</ion-select-option>
-        <ion-select-option [value]="Castilla_La_Mancha">Castilla-La Mancha</ion-select-option>
-        <ion-select-option [value]="Castilla_Leon">Castilla y León</ion-select-option>
-        <ion-select-option [value]="Catalunya">Cataluña</ion-select-option>
-        <ion-select-option [value]="Ceuta">Ceuta</ion-select-option>
-        <ion-select-option [value]="Comunitat_Valenciana">Comunitat Valenciana</ion-select-option>
-        <ion-select-option [value]="Pais_Vasco">País Vasco</ion-select-option>
-        <ion-select-option [value]="Extremadura">Extremadura</ion-select-option>
-        <ion-select-option [value]="Galicia">Galicia</ion-select-option>
-        <ion-select-option [value]="Islas_Baleares">Islas Baleares</ion-select-option>
-        <ion-select-option [value]="Islas_Canarias">Islas Canarias</ion-select-option>
-        <ion-select-option [value]="La_Rioja">La Rioja</ion-select-option>
-        <ion-select-option [value]="Madrid">Comunidad de Madrid</ion-select-option>
-        <ion-select-option [value]="Melilla">Melilla</ion-select-option>
-        <ion-select-option [value]="Murcia">Región de Murcia</ion-select-option>
-        <ion-select-option [value]="Navarra">Comunidad Foral de Navarra</ion-select-option>
+        <ion-select-option class="label" [value]="Andalucia">Andalucía</ion-select-option>
+        <ion-select-option class="label" [value]="Aragon">Aragón</ion-select-option>
+        <ion-select-option class="label" [value]="Asturias">Asturias</ion-select-option>
+        <ion-select-option class="label" [value]="Canarias">Canarias</ion-select-option>
+        <ion-select-option class="label" [value]="Cantabria">Cantabria</ion-select-option>
+        <ion-select-option class="label" [value]="Castilla_La_Mancha">Castilla-La Mancha</ion-select-option>
+        <ion-select-option class="label" [value]="Castilla_Leon">Castilla y León</ion-select-option>
+        <ion-select-option class="label" [value]="Catalunya">Cataluña</ion-select-option>
+        <ion-select-option class="label" [value]="Ceuta">Ceuta</ion-select-option>
+        <ion-select-option class="label" [value]="Comunitat_Valenciana">Comunitat Valenciana</ion-select-option>
+        <ion-select-option class="label" [value]="Pais_Vasco">País Vasco</ion-select-option>
+        <ion-select-option class="label" [value]="Extremadura">Extremadura</ion-select-option>
+        <ion-select-option class="label" [value]="Galicia">Galicia</ion-select-option>
+        <ion-select-option class="label" [value]="Islas_Baleares">Islas Baleares</ion-select-option>
+        <ion-select-option class="label" [value]="Islas_Canarias">Islas Canarias</ion-select-option>
+        <ion-select-option class="label" [value]="La_Rioja">La Rioja</ion-select-option>
+        <ion-select-option class="label" [value]="Madrid">Comunidad de Madrid</ion-select-option>
+        <ion-select-option class="label" [value]="Melilla">Melilla</ion-select-option>
+        <ion-select-option class="label" [value]="Murcia">Región de Murcia</ion-select-option>
+        <ion-select-option class="label" [value]="Navarra">Comunidad Foral de Navarra</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Provincia:</ion-label>
+      <ion-label class="label">Provincia:</ion-label>
       <ion-select formControlName="Province" (ionChange)="getLocalities()">
-        <ion-select-option *ngFor="let province of provinces" [value]="province">{{ province }}</ion-select-option>
+        <ion-select-option class="label" *ngFor="let province of provinces" [value]="province">{{ province }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Localidad:</ion-label>
+      <ion-label class="label">Localidad:</ion-label>
       <ion-select formControlName="Locality" (ionChange)="getPubs()">
-        <ion-select-option *ngFor="let locality of localities" [value]="locality">{{ locality }}</ion-select-option>
+        <ion-select-option class="label" *ngFor="let locality of localities" [value]="locality">{{ locality }}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
   <ion-list>
     <ion-item *ngFor="let pub of pubs" (click)="clickPub(pub)">
       <ion-icon name="cafe"></ion-icon> &nbsp; &nbsp;
-      <ion-label>{{ pub.Name }}</ion-label>
+      <ion-label class="label">{{ pub.Name }}</ion-label>
       <ion-icon name="pin"></ion-icon>&nbsp;&nbsp;
-      <ion-label>{{ pub.Address }}</ion-label>
+      <ion-label class="label">{{ pub.Address }}</ion-label>
     </ion-item>
   </ion-list>
 </form>

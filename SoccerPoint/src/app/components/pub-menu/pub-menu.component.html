@@ -1,8 +1,21 @@
+<ion-router-outlet></ion-router-outlet>
+<ion-header>
+  <ion-toolbar>    
+    <ion-buttons slot="start">
+      <ion-back-button color="light"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CARTA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-button (click)="addDish()"></ion-button>
+  <br>
+  <ion-button expand="block" (click)="addDish()">Añadir plato</ion-button>
   <ion-list>
-    <ion-item>
-      
+    <ion-item *ngFor="let dish of dishes">
+      <ion-label>{{ dish.Name }} - {{ dish.Price }}€ - {{ dish.Positive }} - {{ dish.Negative }}</ion-label>
+      <ion-button *ngIf="isClient" (click)="like()"><ion-icon name="thumbs-up"></ion-icon></ion-button>
+      <ion-button *ngIf="isClient" (click)="dislike()"><ion-icon name="thumbs-down"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

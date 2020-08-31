@@ -1,7 +1,21 @@
-.label{
-    background-color: chartreuse;
+ion-toolbar{
+    --background: #020CA8;
+    --color: #ffffff;
+    text-align: center;
 }
 
-.input{
-    background-color: chocolate;
+ion-content{
+    --ion-background-color: #069FF1;
+}
+
+.fuente{
+    font-family: estiloFuente;
+}
+
+.label{
+    font-family: estiloFuente;
+    font-size: 30px;
+    --color: #FFFFFF;
+    background-color: #020CA8;
+    width: 100%;
 }

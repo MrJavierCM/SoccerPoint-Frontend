@@ -1,33 +1,43 @@
-<ion-header>
-  <ion-toolbar>
+<!-- <ion-header>
+  <ion-toolbar class="login">
     <ion-title>
       SOCCER POINT
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+  <div class="logo">
+      <div>
+        <ion-img [src]="'assets/icon/logo.PNG'"></ion-img>
+      </div>
+  </div>
+  <div class="form">
     <form [formGroup]="loginForm" (ngSumbit)="login()">
       <ion-list>
         <ion-item>
-          <ion-label>Email:</ion-label>
-          <ion-chip>
+          <ion-label class="bold">Email:</ion-label>
+          <ion-chip class="chip">
             <ion-icon name="person-circle-outline"></ion-icon>
             <ion-input type="text" formControlName="Email"></ion-input>
           </ion-chip>
         </ion-item>
         <ion-item>
-          <ion-label>Contraseña:</ion-label>
-          <ion-chip>
+          <ion-label class="bold">Contraseña:</ion-label>
+          <ion-chip class="chip">
             <ion-icon name="key-outline"></ion-icon>
             <ion-input type="password" formControlName="Password"></ion-input>
           </ion-chip>
         </ion-item>
       </ion-list>
     </form>
-  <div>
-    <ion-button (click)="login()">Login</ion-button>
-    <ion-button (click)="userRegister()">Registrarse como usuario</ion-button>
-    <ion-button (click)="pubRegister()">Registrarse como establecimiento</ion-button>
+    <div align="right">
+      <ion-button class="login" expand="block" (click)="login()">Login</ion-button>
+    </div>
+    <br><br>
+    <div class="div">
+      <ion-button class="regist" expand="block" (click)="userRegister()"><ion-icon name="person-add"></ion-icon>&nbsp;Registrarse como usuario</ion-button>
+      <ion-button class="regist" expand="block" (click)="pubRegister()"><ion-icon name="beer"></ion-icon>&nbsp;Registrarse como establecimiento</ion-button> 
+    </div>
   </div>
 </ion-content>

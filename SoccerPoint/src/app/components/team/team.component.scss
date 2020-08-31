@@ -4,3 +4,23 @@
     display: block;
     margin: 0 auto;
 }
+
+ion-content{
+    --ion-background-color: #069FF1;
+    --color: #FFFFFF;
+}
+
+ion-select{
+    background-color: #020CA8;
+    color: #FFFFFF;
+}
+
+ion-toolbar{
+    --background: #020CA8;
+    --color: #ffffff;
+    text-align: center;
+}
+
+ion-label{
+    --color: #FFF;
+}

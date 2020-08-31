@@ -62,23 +62,6 @@ export class LeagueComponent implements OnInit {
     this.currentChecked = true;
   }
 
-  segmentChanged(clicked: any){
-    switch (clicked.detail.value){
-      case "currentFixture":{
-        this.getCurrentFixture()
-        break;
-      }
-      case "fixtureByRound":{
-        this.getFixtureByRound();
-        break;
-      }
-      case "standing":{        
-        this.getStanding();
-        break;
-      }
-    }
-  }
-
   async showLoadingInformation(){
     this.loadingInfo = await this.loadingController.create({
       spinner: 'bubbles',
