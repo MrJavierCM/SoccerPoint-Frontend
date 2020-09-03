@@ -1,0 +1,22 @@
+<ion-router-outlet></ion-router-outlet>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>OFERTAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-button *ngIf="isPub" expand="block" (click)="addSales()"> Añadir ofertas </ion-button>
+  <ion-list *ngIf="haveSales">
+    <ion-item *ngFor="let sale of sales" >
+      <ion-label>{{ sale.Name}}</ion-label>
+      <ion-label>{{ sale.Description }}</ion-label>
+      <ion-button *ngIf="isPub" (click)="deleteSale(sale)" color="warning"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
+  <br><ion-label *ngIf="!haveSales">Actualmente no hay ninguna oferta en activo.</ion-label>
+</ion-content>

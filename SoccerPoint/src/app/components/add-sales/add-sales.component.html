@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Añadir oferta </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-label>Nombre de la oferta:</ion-label>
+  <ion-input [(ngModel)]="saleName" name="saleName" required="true"></ion-input>
+  <ion-label>Descripción de la oferta:</ion-label>
+  <ion-textarea [(ngModel)]="saleDescription" name="saleDescription" required="true" autogrow="true" inputmode="text" placehoder="Oferta..."></ion-textarea>
+  <ion-button color="warning" (click)="cancel()">Cancelar</ion-button>
+  <ion-button class="button" (click)="add()">Añadir</ion-button>
+</ion-content>
