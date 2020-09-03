@@ -11,3 +11,13 @@ ion-content{
 .font{
     font-family: estiloFuente;
 }
+
+ion-button{
+    --background: #020CA8;
+    --border-color: #FFFFFF;
+    --color: #ffffff;
+}
+
+.addComment{
+    --border-radius: 5px; 
+}

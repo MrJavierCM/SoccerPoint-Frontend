@@ -6,7 +6,7 @@
 
 <ion-content>
   <br>
-  <ion-label>Selecciona a un equipo</ion-label>
+  &nbsp;&nbsp;<ion-label class="label">Selecciona a un equipo</ion-label>
   <ion-select [(ngModel)]="teamID" (ionChange)="getInfoTeam()">
     <ion-select-option value="542">Deportivo Alavés</ion-select-option>
     <ion-select-option value="531">Athletic Club</ion-select-option>
@@ -37,7 +37,7 @@
   </ion-card>
   <ion-list>
     <ion-item *ngFor="let game of fixtures">
-      <ion-label>{{ game["homeTeam"].team_name }} {{game["goalsHomeTeam"]}} VS {{game["goalsAwayTeam"]}} {{ game["awayTeam"].team_name }}</ion-label>
+      <ion-label class="label">{{ game["homeTeam"].team_name }} {{game["goalsHomeTeam"]}} - {{game["goalsAwayTeam"]}} {{ game["awayTeam"].team_name }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
