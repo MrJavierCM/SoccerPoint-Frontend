@@ -43,9 +43,11 @@ export class HomePage {
         CurrentClient.surname = response[nick].Surname;
         CurrentClient.nickName = response[nick].Nickname;
         CurrentClient.isClient = true;
+        CurrentPub.isBar = false;
       });
 
       this.router.navigateByUrl('main/location');
+      this.loginForm.reset();
     } else if (ok === 1){
       await this.pubsService.getPubByEmail(emailForm).then(response => {
         var nick = Object.keys(response)[0]
@@ -55,10 +57,14 @@ export class HomePage {
         CurrentPub.phone = response[nick].Phone;
         CurrentPub.location = response[nick].Location;
         CurrentPub.nickName = response[nick].Nickname;
+        CurrentPub.province = response[nick].Province;
+        CurrentPub.community = response[nick].Community
         CurrentPub.isBar = true;
+        CurrentClient.isClient = false;
       });
 
       await this.router.navigateByUrl('pubProfile')
+      this.loginForm.reset();
     } else {
       this.checkErrors(Object.values(ok)[0])
     }
@@ -91,11 +97,13 @@ export class HomePage {
   }
 
   userRegister(){
-    this.router.navigateByUrl('UserRegister')
+    this.router.navigateByUrl('UserRegister')    
+    this.loginForm.reset();
   }
 
   pubRegister(){
-    this.router.navigateByUrl('PubRegister')
+    this.router.navigateByUrl('PubRegister')    
+    this.loginForm.reset();
   }
 
 }

@@ -8,22 +8,11 @@ ion-content{
     --ion-background-color: #069FF1;
 }
 
-.font{
+.label{
     font-family: estiloFuente;
 }
 
 ion-button{
     --background: #020CA8;
-    --border-color: #FFFFFF;
-    --color: #ffffff;
-}
-
-.addComment{
-    --border-radius: 5px; 
-}
-
-.comments{
-    font-family: estiloFuente;
     --color: #FFFFFF;
-    background-color: #020CA8;
 }

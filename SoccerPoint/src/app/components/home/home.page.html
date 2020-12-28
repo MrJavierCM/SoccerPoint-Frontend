@@ -1,33 +1,29 @@
-<!-- <ion-header>
-  <ion-toolbar class="login">
-    <ion-title>
-      SOCCER POINT
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content>
-  <div class="logo">
-      <div>
-        <ion-img [src]="'assets/icon/logo.PNG'"></ion-img>
-      </div>
-  </div>
+    <div class="divLogo">      
+      <ion-img class="logoInside" [src]="'assets/icon/logo.PNG'"></ion-img>
+    </div>
   <div class="form">
     <form [formGroup]="loginForm" (ngSumbit)="login()">
       <ion-list>
         <ion-item>
+          <div>
           <ion-label class="bold">Email:</ion-label>
-          <ion-chip class="chip">
+          <div class="chip">
+          <ion-chip>
             <ion-icon name="person-circle-outline"></ion-icon>
             <ion-input type="text" formControlName="Email"></ion-input>
           </ion-chip>
+        </div>
+        </div>
         </ion-item>
         <ion-item>
+          <div>
           <ion-label class="bold">Contraseña:</ion-label>
           <ion-chip class="chip">
             <ion-icon name="key-outline"></ion-icon>
             <ion-input type="password" formControlName="Password"></ion-input>
           </ion-chip>
+          </div>
         </ion-item>
       </ion-list>
     </form>

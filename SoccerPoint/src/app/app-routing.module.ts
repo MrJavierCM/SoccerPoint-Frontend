@@ -13,6 +13,9 @@ import { CommentsComponent } from './components/comments/comments.component';
 import { PubImagesComponent } from './components/pub-images/pub-images.component';
 import { Pub } from './models/Pub';
 import { PubMenuComponent } from './components/pub-menu/pub-menu.component';
+import { PubSalesComponent } from './components/pub-sales/pub-sales.component';
+import { VoteTeamComponent } from './components/vote-team/vote-team.component';
+import { TeamsVotesComponent } from './components/teams-votes/teams-votes.component';
 
 const routes: Routes = [
   { 
@@ -73,6 +76,18 @@ const routes: Routes = [
   {
     path: 'pubProfile/pubMenu',
     component: PubMenuComponent
+  },
+  {
+    path: 'pubProfile/pubSales',
+    component: PubSalesComponent
+  },
+  {
+    path: 'pubProfile/teamsVotes',
+    component: TeamsVotesComponent
+  },
+  {
+    path: 'pubProfile/teamsVotes/addVote',
+    component: VoteTeamComponent
   }
 ];
 

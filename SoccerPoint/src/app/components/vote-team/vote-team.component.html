@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="return()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Vota a tu equipo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  &nbsp;<ion-label>Vota a tú equipo favorito</ion-label>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="teamID" (ionChange)="alertVoteTeam(teamID)">
+      <ion-item>
+        <ion-label class="label">Deportivo Alavés</ion-label>
+        <ion-radio value="542"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Athletic Club</ion-label>
+        <ion-radio value="531"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Atlético de Madrid</ion-label>
+        <ion-radio value="530"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">FC Barcelona</ion-label>
+        <ion-radio value="529"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Real Betis</ion-label>
+        <ion-radio value="543"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Celta</ion-label>
+        <ion-radio value="538"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Eibar</ion-label>
+        <ion-radio value="545"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Espanyol</ion-label>
+        <ion-radio value="540"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Getafe</ion-label>
+        <ion-radio value="546"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Granada</ion-label>
+        <ion-radio value="715"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Leganés</ion-label>
+        <ion-radio value="537"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Levante</ion-label>
+        <ion-radio value="539"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Mallorca</ion-label>
+        <ion-radio value="798"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Osasuna</ion-label>
+        <ion-radio value="727"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Real Sociedad</ion-label>
+        <ion-radio value="548"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Real Madrid</ion-label>
+        <ion-radio value="541"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Real Valladolid</ion-label>
+        <ion-radio value="720"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Sevilla</ion-label>
+        <ion-radio value="536"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Valencia</ion-label>
+        <ion-radio value="532"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label class="label">Villarreal</ion-label>
+          <ion-radio value="533"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

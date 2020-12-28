@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Comment } from 'src/app/models/Comment';
 import { UsersService } from 'src/app/services/users.service';
+import { CurrentClient } from 'src/app/data/currentClient';
 
 @Component({
   selector: 'app-add-comment',
@@ -18,7 +19,8 @@ export class AddCommentComponent implements OnInit {
 
   constructor(
     protected modalController: ModalController,
-    protected userService: UsersService
+    protected userService: UsersService,
+    protected alertController: AlertController
     ) { }
 
   ngOnInit() {
@@ -33,8 +35,27 @@ export class AddCommentComponent implements OnInit {
     await this.modalController.dismiss()  
   }
 
+  async alertComment(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Desea agregar el comentario?',
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Aceptar',
+        handler: () => {
+          this.addComment();
+        }
+      }]
+    })
+
+    await alert.present();
+  }
+
   async addComment(){
-    this.newComment = new Comment('Javier', this.date, this.comment)
+    this.newComment = new Comment(CurrentClient.nickName, this.date, this.comment)
     var data = [this.pubNick, this.newComment]
     await this.userService.newComment(data)
     await this.modalController.dismiss()

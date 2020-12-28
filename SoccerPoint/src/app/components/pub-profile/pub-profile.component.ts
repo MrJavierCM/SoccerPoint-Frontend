@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SelectedPub } from '../location/selectedPub';
 import { CurrentPub } from 'src/app/data/CurrentPub';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-pub-profile',
@@ -19,22 +20,27 @@ export class PubProfileComponent implements OnInit {
   protected Phone: number;
   protected Location: string;
   protected Nickname: string;
+  protected Province: string;
+  protected Community: string;
 
   protected cantEdit: boolean = true;
 
   constructor(
     protected pubService: PubsService,
     protected alertController: AlertController,
-    protected router: Router
+    protected router: Router,
+    protected usersService: UsersService
     ) { }
 
   ngOnInit() {
     this.Email = CurrentPub.email;
-    this.Name = CurrentPub.name;
+    this.Name = CurrentPub.pubName;
     this.Address = CurrentPub.address;
     this.Phone = CurrentPub.phone;
     this.Location = CurrentPub.location;
     this.Nickname = CurrentPub.nickName;
+    this.Province = CurrentPub.province;
+    this.Community = CurrentPub.community
   }
 
   edit(){
@@ -45,22 +51,49 @@ export class PubProfileComponent implements OnInit {
     }
   }
 
-  images() {
-    this.router.navigateByUrl('pubProfile/pubImages')
+  sales() {
+    this.router.navigateByUrl('pubProfile/pubSales')
   }
 
   comments(){
-    //SelectedPub.selectedPub = this.pub
     this.router.navigateByUrl('pubProfile/comments')
   }
 
   menu(){
-    //SelectedPub.selectedPub = this.pub
     this.router.navigateByUrl('pubProfile/pubMenu')
   }
 
+  teamsVotes(){
+    this.router.navigateByUrl('pubProfile/teamsVotes')
+  }
+
+  async signOut(){
+    var exit = await this.usersService.signOut();
+    this.router.navigateByUrl('login')
+  }
+
+  async alertSignOut(){
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Deseas cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancel',
+        },{
+          text: 'Aceptar',
+          role:'Accept',
+          handler: () =>{
+            this.signOut()
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   async editProfile(){
-    var pub = new Pub(this.Name, this.Nickname,this.Email, this.Location, '', '', this.Address, this.Phone);
+    var pub = new Pub(this.Name, this.Nickname,this.Email, this.Location, this.Province, this.Community, this.Address, this.Phone);
     await this.pubService.editProfile(pub, this.Nickname);
     this.cantEdit = true;
   }

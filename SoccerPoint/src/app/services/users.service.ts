@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User';
+import { Dish } from '../models/Dish';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,10 @@ export class UsersService {
       },
       mode: 'cors',
       body: JSON.stringify({Email: email})
-    })
-    return await resp.json();;
+    })    
+    console.log(resp)
+    var response = resp.json()
+    return await response;
   }
 
   async login(data){
@@ -38,7 +42,8 @@ export class UsersService {
         'Content-Type': 'application/json'
       }
     })  
-    return resp.json();
+    var response = resp.json()
+    return response;
   }
 
   postUser(data, password){
@@ -89,8 +94,6 @@ export class UsersService {
     }).then(async function(response){
       if(response.ok){
         var respuesta = await response.json()
-        console.log(respuesta)
-        console.log('ESTO ES UNA PRUEBA: ' + response);
         return respuesta;
       } else {
         console.log('Respuesta de red OK pero respuesta HTTP no OK');
@@ -100,15 +103,76 @@ export class UsersService {
 
   async signOut(){
     await fetch(this.url + 'signOut', {
-      method: 'POST',
+      method: 'GET',
       headers:{
-        'Content-Type': 'aplication/json'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(true)
     }).then(function(response){
       return response;
     }).catch(function(error){
       return error;
     })
+  }
+
+  async editProfile(user: User, nickname: string){
+    await fetch(this.url + 'editProfile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify([user, nickname])
+    })
+  }
+
+  async addLike(nickname: string, dish: Dish){
+    await fetch(this.url + 'likeDish',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify([nickname, dish])
+    })
+  }
+
+  async addDislike(nickname: string, dish: Dish){
+    await fetch(this.url + 'dislikeDish',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify([nickname, dish])
+    })
+  }
+  
+  async voteTeam(pubNick, team){
+    await fetch(this.url + 'voteTeam', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify([pubNick, team])
+    })
+  }
+
+  async checkNick(nick){
+    var resp = await fetch(this.url + 'checkNick',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({"Nickname": nick})
+    }).then(function (response){
+      return response.json();
+    }).catch(function(error){
+      return false;
+    });
+
+    return resp;
   }
 }

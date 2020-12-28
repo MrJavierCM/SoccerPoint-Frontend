@@ -6,21 +6,14 @@ ion-toolbar{
 
 ion-content{
     --ion-background-color: #069FF1;
-}
-
-.button{
-    --background: #020CA8;
-    --color: #ffffff;
     font-family: estiloFuente;
 }
-
 .label{
-    --color: #000000;
     font-family: estiloFuente;
-    font-size: larger;
-    font-style: bold;
+    --color: #000000;
 }
 
-.font{
-    font-family: estiloFuente;;
+ion-radio{
+    --color: #000000;
+    --color-checked: #020CA8;
 }

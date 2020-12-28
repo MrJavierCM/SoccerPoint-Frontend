@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="haveComments">
     <ion-item *ngFor="let comment of comments">
       <ion-label class="label" position="stacked"> Usuario: </ion-label>
       <ion-input class="fuente" readonly="true">{{ comment.User }} </ion-input>
@@ -19,4 +19,5 @@
       <ion-textarea class="fuente" type="text" readonly="true" maxlength="500" autoGrow="true"> {{ comment.Commentary }} </ion-textarea>
     </ion-item>
   </ion-list>
+  <ion-label *ngIf="!haveComments">Actualmente no hay ningún comentario.</ion-label>
 </ion-content>

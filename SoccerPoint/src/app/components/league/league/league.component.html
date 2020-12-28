@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-toolbar class="header">
+  <ion-toolbar>
     <ion-title>Liga Santander</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="card">
+  <ion-card>
     <ion-card-content>
-      <ion-grid class="grid">
+      <ion-grid>
         <ion-row>
           <ion-col>
             <div><ion-button expand="block" (click)="getStanding()">Clasificación</ion-button></div>
@@ -24,7 +24,7 @@
           </ion-col>
           <ion-col>
             <div class="marginSelect">
-              <ion-select class="ionSelect" [(ngModel)]="roundFixture">
+              <ion-select [(ngModel)]="roundFixture">
                 <ion-select-option *ngFor="let round of rounds" [value]="round">{{round}}</ion-select-option>
               </ion-select>
             </div>
@@ -38,7 +38,7 @@
       <ion-avatar>
         <ion-img class="imagen" src="{{team.logo}}"></ion-img>
       </ion-avatar> &nbsp; &nbsp;   
-      <ion-label>{{ team.rank }}º - {{ team.teamName }} - {{ team.points }}pts </ion-label>
+      <ion-label class="font">{{ team.rank }}º - {{ team.teamName }} - {{ team.points }} pts </ion-label>
     </ion-item>
   </ion-list>
   <ion-list *ngIf="fixtureChecked">

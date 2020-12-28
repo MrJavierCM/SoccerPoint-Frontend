@@ -1,0 +1,20 @@
+<ion-router-outlet></ion-router-outlet>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Equipos votados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-button *ngIf="isClient" expand="block" (click)="addVote()"> Votar equipo </ion-button>
+  <ion-list *ngIf="haveVotes">
+    <ion-item *ngFor="let team of teams" >
+      <ion-label class="label">{{ team.Name}} - Número de votos: {{ team.Votes }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <br><ion-label *ngIf="!haveVotes">Actualmente ningún equipo ha sido votado.</ion-label>
+</ion-content>

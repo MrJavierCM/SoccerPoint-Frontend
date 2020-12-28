@@ -19,7 +19,7 @@
         </ng-container>
       </div>
       <ion-item>
-        <ion-label class="label" >Apellidos</ion-label>
+        <ion-label class="label" >Apellido:</ion-label>
         <ion-input formControlName="Surname"></ion-input>
       </ion-item>
       <div>
@@ -77,6 +77,6 @@
   </form>
   <div align="center">
     <ion-button color="warning" (click)="showAlertCancel()">Cancelar</ion-button>
-    <ion-button color="primary" (click)="showAlertRegist()" [disabled] = "!registForm.valid">Crear</ion-button>
+    <ion-button (click)="showAlertRegist()" [disabled] = "!registForm.valid" class="button">Crear</ion-button>
   </div>
 </ion-content>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PubsService } from 'src/app/services/pubs.service';
 import { CurrentClient } from 'src/app/data/currentClient';
 import { CurrentPub } from 'src/app/data/CurrentPub';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { AddSalesComponent } from '../add-sales/add-sales.component';
 import { Pub } from 'src/app/models/Pub';
 import { Sale } from 'src/app/models/Sale';
@@ -21,7 +21,8 @@ export class PubSalesComponent implements OnInit {
 
   constructor(
     protected pubsService: PubsService,
-    protected modalController: ModalController
+    protected modalController: ModalController,
+    protected alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -35,11 +36,15 @@ export class PubSalesComponent implements OnInit {
       component: AddSalesComponent,
       componentProps: {pubNick: CurrentPub.nickName}
     });
+    modal.onDidDismiss().then(()=>{
+      this.getSales();
+    })
     return await modal.present();
   }
 
   async getSales(){
     var sal = await this.pubsService.salesByPub(this.selectedPub)
+    this.sales = [];
     if(sal != false){
       Object.values(sal).forEach(element => {
         var newSal = new Sale(element["Name"], element["Description"])
@@ -50,7 +55,22 @@ export class PubSalesComponent implements OnInit {
   }
 
   async deleteSale(sale){
-    this.pubsService.deleteSale(sale, CurrentPub.nickName)
+    const alert = await this.alertController.create({
+      header: 'Atención',
+      message: '¿Desea eliminar esta oferta?',
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel'
+      },{
+        text: 'Aceptar',
+        handler: () =>{
+          this.pubsService.deleteSale(sale, CurrentPub.nickName);
+          this.getSales();
+        }
+      }]
+    })
+    await alert.present();
+    
   }
 
 }

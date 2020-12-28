@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Imágenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <br>
+  <ion-button expand="block" (click)="takePicture()">
+    <ion-icon name="camera"></ion-icon> Agregar imágenes
+  </ion-button>
+  <ion-grid>
+    <ion-row>
+      <img [src]="imgURL"/>
+    </ion-row>
+  </ion-grid>
+</ion-content>

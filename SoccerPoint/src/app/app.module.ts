@@ -27,6 +27,10 @@ import { PubImagesComponent } from './components/pub-images/pub-images.component
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
 import { AddDishComponent } from './components/add-dish/add-dish.component';
 import { PubMenuComponent } from './components/pub-menu/pub-menu.component';
+import { PubSalesComponent } from './components/pub-sales/pub-sales.component';
+import { AddSalesComponent } from './components/add-sales/add-sales.component';
+import { VoteTeamComponent } from './components/vote-team/vote-team.component';
+import { TeamsVotesComponent } from './components/teams-votes/teams-votes.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,13 @@ import { PubMenuComponent } from './components/pub-menu/pub-menu.component';
     PubImagesComponent,
     AddCommentComponent,
     PubMenuComponent,
-    AddDishComponent
+    AddDishComponent,
+    PubSalesComponent,
+    AddSalesComponent,
+    VoteTeamComponent,
+    TeamsVotesComponent
   ],
-  entryComponents: [AddCommentComponent, AddDishComponent],
+  entryComponents: [AddCommentComponent, AddDishComponent, AddSalesComponent],
   imports: [BrowserModule, IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,

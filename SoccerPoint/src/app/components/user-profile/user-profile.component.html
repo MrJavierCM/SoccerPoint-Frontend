@@ -1,0 +1,17 @@
+<ion-router-outlet></ion-router-outlet>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label>Correo Electrónico</ion-label>
+  <ion-input [(ngModel)]="Email" disabled="{{cantEdit}}"></ion-input>
+  <ion-label>Nombre</ion-label>
+  <ion-input [(ngModel)]="Name" disabled="{{cantEdit}}"></ion-input>
+  <ion-label>Apellidos</ion-label>
+  <ion-input [(ngModel)]="Surname" disabled="{{cantEdit}}"></ion-input>
+  <ion-label>Nombre de Usuario</ion-label>
+  <ion-input [(ngModel)]="Nickname" disabled="{{cantEdit}}"></ion-input>
+</ion-content>

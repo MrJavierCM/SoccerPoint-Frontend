@@ -99,15 +99,30 @@ export class UserRegistrationComponent implements OnInit {
     await alert.present();
   }
 
-  register(){
-    var user: User = new User(
-      this.registForm.value.Nickname,
-      this.registForm.value.Username,
-      this.registForm.value.Surname,
-      this.registForm.value.Email
-      );
-    this.usersService.postUser(user, this.registForm.value.Password);
-    this.backLogin();
+  async register(){
+    var resp = await this.usersService.checkNick(this.registForm.value.Nickname)
+    if(!resp){
+      var user: User = new User(
+        this.registForm.value.Nickname,
+        this.registForm.value.Username,
+        this.registForm.value.Surname,
+        this.registForm.value.Email
+        );
+      await this.usersService.postUser(user, this.registForm.value.Password);
+      this.backLogin();
+      this.registForm.reset();
+    } else {
+      this.showAlertNick()
+    }
+  }
+
+  async showAlertNick(){
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Nickname ya en uso.',
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
 
   backLogin(){

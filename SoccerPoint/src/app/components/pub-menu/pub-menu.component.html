@@ -10,12 +10,47 @@
 
 <ion-content>
   <br>
-  <ion-button expand="block" (click)="addDish()">Añadir plato</ion-button>
-  <ion-list>
+  <ion-button *ngIf="isPub" expand="block" (click)="addDish()">Añadir plato</ion-button>
+  <ion-list *ngIf="haveMenu">
     <ion-item *ngFor="let dish of dishes">
-      <ion-label>{{ dish.Name }} - {{ dish.Price }}€ - {{ dish.Positive }} - {{ dish.Negative }}</ion-label>
-      <ion-button *ngIf="isClient" (click)="like()"><ion-icon name="thumbs-up"></ion-icon></ion-button>
-      <ion-button *ngIf="isClient" (click)="dislike()"><ion-icon name="thumbs-down"></ion-icon></ion-button>
+      <ion-grid>
+        <ion-row>
+      <ion-item>
+        <ion-col>
+          <ion-label class="label">{{ dish.Name }}</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-button *ngIf="isPub" (click)="deleteDish(dish)" color="warning"><ion-icon name="close"></ion-icon></ion-button>
+        </ion-col>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-label class="label"> {{ dish.Price }} € </ion-label>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-col>
+        <ion-label class="label">Likes: {{ dish.Positive }} </ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-button *ngIf="isClient" (click)="like(dish)"><ion-icon name="thumbs-up"></ion-icon></ion-button>
+      </ion-col>
+      </ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-item>
+        <ion-col>
+        <ion-label class="label"> Dislikes: {{ dish.Negative }}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-button *ngIf="isClient" (click)="dislike(dish)"><ion-icon name="thumbs-down"></ion-icon></ion-button>
+      </ion-col>
+      </ion-item>   
+    </ion-row>
+    </ion-grid>   
     </ion-item>
   </ion-list>
+  <br><ion-label *ngIf="!haveMenu">Actualmente no se dispone de la carta del establecimiento.</ion-label>
 </ion-content>

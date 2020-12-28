@@ -14,6 +14,8 @@ export class CommentsComponent implements OnInit {
   protected comments: Comment[]=[];
   protected selectedPub: Pub = null;
 
+  protected haveComments: boolean = false;
+
   constructor(protected pubsService: PubsService) { }
 
   ngOnInit() {
@@ -22,7 +24,11 @@ export class CommentsComponent implements OnInit {
   }
 
   async getComments(){
-    this.comments = Object.values(await this.pubsService.commentsByPub(this.selectedPub))
+    var com = await this.pubsService.commentsByPub(this.selectedPub)
+    if(com != false){
+      this.comments = Object.values(com)
+      this.haveComments = true;
+    }
   }
 
 }

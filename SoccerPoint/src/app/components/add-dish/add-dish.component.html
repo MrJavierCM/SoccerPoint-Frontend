@@ -10,5 +10,6 @@
   <ion-input [(ngModel)]="name" name="name" type="text" required="true"></ion-input>
   <ion-label>Precio:</ion-label>
   <ion-input [(ngModel)]="price" name="price" type="number" required="true"></ion-input>
-  <ion-button (click)="createDish()"></ion-button>
+  <ion-button color="warning" (click)="close()">Cancelar</ion-button>
+  <ion-button class="button" (click)="createDish()">Añadir</ion-button>
 </ion-content>

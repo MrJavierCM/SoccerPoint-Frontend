@@ -151,25 +151,40 @@ export class PubRegistrationComponent implements OnInit {
       this.router.navigateByUrl('login');
   }
   
-  register(){
-    var location: Location = new Location(
-      this.registForm.value.Locality,
-      this.registForm.value.Province,
-      this.registForm.value.Community
-    )
+  async register(){
+    var resp = await this.pubsService.checkNick(this.registForm.value.Nickname)
+    if(!resp){
+      var location: Location = new Location(
+        this.registForm.value.Locality,
+        this.registForm.value.Province,
+        this.registForm.value.Community
+      )
 
-    var pub: Pub = new Pub(
-      this.registForm.value.PubName,
-      this.registForm.value.Nickname,
-      this.registForm.value.Email,
-      location.Name,
-      location.Province,
-      location.Community,
-      this.registForm.value.Address,
-      this.registForm.value.Phone
-      );
-    this.pubsService.postPub(pub, this.registForm.value.Password);
-    this.backLogin()
+      var pub: Pub = new Pub(
+        this.registForm.value.PubName,
+        this.registForm.value.Nickname,
+        this.registForm.value.Email,
+        location.Name,
+        location.Province,
+        location.Community,
+        this.registForm.value.Address,
+        this.registForm.value.Phone
+        );
+      await this.pubsService.postPub(pub, this.registForm.value.Password);
+      this.backLogin();
+      this.registForm.reset();
+    } else {
+      this.showAlertNick()
+    }
+  }
+
+  async showAlertNick(){
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'Nickname ya en uso.',
+      buttons: ['Ok']
+    });
+    await alert.present();
   }
  
   protected validation_messages = {

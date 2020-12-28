@@ -25,4 +25,8 @@ export class AddDishComponent implements OnInit {
     await this.modalController.dismiss()
   }
 
+  async close() {
+    await this.modalController.dismiss()  
+  }
+
 }

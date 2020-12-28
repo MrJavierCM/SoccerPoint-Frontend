@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FootballService } from 'src/app/services/football.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-league',
@@ -20,7 +20,8 @@ export class LeagueComponent implements OnInit {
 
   constructor(
     protected footballService: FootballService,
-    protected loadingController: LoadingController
+    protected loadingController: LoadingController,
+    protected alertController: AlertController
     ) { }
 
   ngOnInit() {
@@ -41,14 +42,23 @@ export class LeagueComponent implements OnInit {
   }
 
   async getFixtureByRound(){
-    this.currentChecked = false;
-    this.standingChecked = false;    
-    this.showLoadingInformation();
-    var resp = await this.footballService.getFixtureByNumber(this.roundFixture);
-    var respJSON = await resp.json();
-    this.stopLoadingInformation();
-    this.fixture = respJSON.api.fixtures;
-    this.fixtureChecked = true;
+    if(this.roundFixture == null){
+      const alert = await this.alertController.create({
+        header: 'Atencion',
+        message: 'Primero debes seleccionar un número de jornada.',
+        buttons: ['Ok']
+      })
+      await alert.present()
+    } else {
+      this.currentChecked = false;
+      this.standingChecked = false;    
+      this.showLoadingInformation();
+      var resp = await this.footballService.getFixtureByNumber(this.roundFixture);
+      var respJSON = await resp.json();
+      this.stopLoadingInformation();
+      this.fixture = respJSON.api.fixtures;
+      this.fixtureChecked = true;
+    }
   }
 
   async getCurrentFixture(){
